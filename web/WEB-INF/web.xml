@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+		 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+		 version="3.1">
+
+
+	<!-- ==================== ETUDIANT ==================== -->
+	<!-- === Contrôleur  === -->
+	<servlet>
+		<servlet-name>EtudiantController</servlet-name>
+		<servlet-class>projet.Controller.EtudiantController</servlet-class>
+
+		<init-param>
+			<param-name>defaultPath</param-name>
+			<param-value>accueil</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>pathList</param-name>
+			<param-value>/WEB-INF/JSP/Etudiant/list.jsp</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>pathDetails</param-name>
+			<param-value>/WEB-INF/JSP/Etudiant/details.jsp</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>pathListNotes</param-name>
+			<param-value>/WEB-INF/JSP/Etudiant/listNotes.jsp</param-value>
+		</init-param>
+	</servlet>
+
+	<!-- === Route  === -->
+	<servlet-mapping>
+		<servlet-name>EtudiantController</servlet-name>
+		<url-pattern>/Etudiant/*</url-pattern>
+	</servlet-mapping>
+
+
+	<!-- ==================== GROUPE ==================== -->
+	<!-- === Contrôleur  === -->
+	<servlet>
+		<servlet-name>GroupeController</servlet-name>
+		<servlet-class>projet.Controller.GroupeController</servlet-class>
+
+		<init-param>
+			<param-name>defaultPath</param-name>
+			<param-value>accueil</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>pathList</param-name>
+			<param-value>/WEB-INF/JSP/Groupe/list.jsp</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>pathDetails</param-name>
+			<param-value>/WEB-INF/JSP/Groupe/details.jsp</param-value>
+		</init-param>
+	</servlet>
+
+	<!-- === Route  === -->
+	<servlet-mapping>
+		<servlet-name>GroupeController</servlet-name>
+		<url-pattern>/Groupe/*</url-pattern>
+	</servlet-mapping>
+
+	<!--  fichiers d'accueil -->
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>
