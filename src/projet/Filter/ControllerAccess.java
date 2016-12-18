@@ -1,7 +1,6 @@
 package projet.Filter;
 
 import projet.Components.Controller;
-import projet.Controller.FrontalController;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +21,7 @@ public class ControllerAccess implements Filter {
 		System.out.println( "-------------------- BEGIN ControllerAccess FILTER" );
 		System.out.println( "RequestURI: " + request.getRequestURI() );
 		
-		Boolean callFromFrontalCtrl = request.getRequestURI().startsWith( FrontalController.BASE_PATH_PROJECT );
+		Boolean callFromFrontalCtrl = request.getRequestURI().startsWith( Controller.BASE_PATH_PROJECT );
 		System.out.println( "Access from Frontal Controller: " + callFromFrontalCtrl );
 		
 		if ( !callFromFrontalCtrl ) {

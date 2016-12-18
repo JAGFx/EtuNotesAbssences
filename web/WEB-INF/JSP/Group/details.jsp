@@ -1,4 +1,4 @@
-<%@ page import="projet.Model.Etudiant" %>
+<%@ page import="projet.Model.Student" %>
 <%--
   Created by IntelliJ IDEA.
   User: SMITHE
@@ -13,19 +13,19 @@
 	</head >
 	<body >
 		<jsp:include page="../Default/header.jsp" />
-		<jsp:useBean id="groupe" class="projet.Model.Groupe" scope="request" />
+		<jsp:useBean id="group" class="projet.Model.Group" scope="request" />
 		
 		<ul >
-			<li >ID: <%= groupe.getId() %>
+			<li >ID: <%= group.getId() %>
 			</li >
-			<li >Name: <%= groupe.getName() %>
+			<li >Name: <%= group.getName() %>
 			</li >
 		</ul >
 		
 		<h4 >Etudiants: </h4 >
 		<ul >
-			<% for ( Etudiant etu : groupe.getEtudiants() ) { %>
-			<li ><%= etu.getNom() + ' ' + etu.getPrenom() %>
+			<% for ( Student etu : group.getStudents() ) { %>
+			<li ><%= etu.getLastname() + ' ' + etu.getFirstname() %>
 			</li >
 			<% } %>
 		</ul >

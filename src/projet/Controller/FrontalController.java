@@ -34,7 +34,7 @@ public final class FrontalController extends Controller {
 				getServletConfig().getServletContext().getRequestDispatcher( "/" + subController ).include( req, resp );
 				
 			} else
-				getServletConfig().getServletContext().getRequestDispatcher( getServeltParam( "defaultController" ) ).include( req, resp );
+				getServletConfig().getServletContext().getRequestDispatcher( getServletParam( "defaultController" ) ).include( req, resp );
 			
 			
 		} catch ( Throwable t ) {

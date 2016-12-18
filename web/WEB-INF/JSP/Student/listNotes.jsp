@@ -12,9 +12,9 @@
 	</head >
 	<body >
 		<jsp:include page="../Default/header.jsp" />
-		<jsp:useBean id="etu" type="projet.Model.Etudiant" scope="request" />
+		<jsp:useBean id="etu" type="projet.Model.Student" scope="request" />
 		
-		<h2 >Etudiant : <%= etu.getNom() + ' ' + etu.getPrenom() %>
+		<h2 >Etudiant : <%= etu.getLastname() + ' ' + etu.getFirstname() %>
 		</h2 >
 		
 		<h4 >Notes: </h4 >

@@ -50,8 +50,8 @@
 	<!-- ==================== ETUDIANT ==================== -->
 	<!-- === Contrôleur  === -->
 	<servlet>
-		<servlet-name>EtudiantController</servlet-name>
-		<servlet-class>projet.Controller.EtudiantController</servlet-class>
+		<servlet-name>StudentController</servlet-name>
+		<servlet-class>projet.Controller.StudentController</servlet-class>
 
 		<init-param>
 			<param-name>defaultPath</param-name>
@@ -60,32 +60,32 @@
 
 		<init-param>
 			<param-name>pathList</param-name>
-			<param-value>/WEB-INF/JSP/Etudiant/list.jsp</param-value>
+			<param-value>/WEB-INF/JSP/Student/list.jsp</param-value>
 		</init-param>
 
 		<init-param>
 			<param-name>pathDetails</param-name>
-			<param-value>/WEB-INF/JSP/Etudiant/details.jsp</param-value>
+			<param-value>/WEB-INF/JSP/Student/details.jsp</param-value>
 		</init-param>
 
 		<init-param>
 			<param-name>pathListNotes</param-name>
-			<param-value>/WEB-INF/JSP/Etudiant/listNotes.jsp</param-value>
+			<param-value>/WEB-INF/JSP/Student/listNotes.jsp</param-value>
 		</init-param>
 	</servlet>
 
 	<!-- === Route  === -->
 	<servlet-mapping>
-		<servlet-name>EtudiantController</servlet-name>
-		<url-pattern>/Etudiant/*</url-pattern>
+		<servlet-name>StudentController</servlet-name>
+		<url-pattern>/Student/*</url-pattern>
 	</servlet-mapping>
 
 
 	<!-- ==================== GROUPE ==================== -->
 	<!-- === Contrôleur  === -->
 	<servlet>
-		<servlet-name>GroupeController</servlet-name>
-		<servlet-class>projet.Controller.GroupeController</servlet-class>
+		<servlet-name>GroupController</servlet-name>
+		<servlet-class>projet.Controller.GroupController</servlet-class>
 
 		<init-param>
 			<param-name>defaultPath</param-name>
@@ -94,19 +94,19 @@
 
 		<init-param>
 			<param-name>pathList</param-name>
-			<param-value>/WEB-INF/JSP/Groupe/list.jsp</param-value>
+			<param-value>/WEB-INF/JSP/Group/list.jsp</param-value>
 		</init-param>
 
 		<init-param>
 			<param-name>pathDetails</param-name>
-			<param-value>/WEB-INF/JSP/Groupe/details.jsp</param-value>
+			<param-value>/WEB-INF/JSP/Group/details.jsp</param-value>
 		</init-param>
 	</servlet>
 
 	<!-- === Route  === -->
 	<servlet-mapping>
-		<servlet-name>GroupeController</servlet-name>
-		<url-pattern>/Groupe/*</url-pattern>
+		<servlet-name>GroupController</servlet-name>
+		<url-pattern>/Group/*</url-pattern>
 	</servlet-mapping>
 
 	<!-- ==================== CONTROLLER ACCESS ==================== -->

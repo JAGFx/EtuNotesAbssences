@@ -30,7 +30,7 @@ public class Controller extends HttpServlet {
 		
 		setAction( ( pathInfo != null )
 			? pathInfo
-			: getServeltParam( "defaultPath" ) );
+			: getServletParam( "defaultPath" ) );
 		
 		setMethod( req.getMethod().toLowerCase() );
 		
@@ -74,7 +74,7 @@ public class Controller extends HttpServlet {
 		rd.forward( request, response );
 	}
 	
-	protected String getServeltParam( String name ) {
+	protected String getServletParam( String name ) {
 		return getServletConfig().getInitParameter( name );
 	}
 	

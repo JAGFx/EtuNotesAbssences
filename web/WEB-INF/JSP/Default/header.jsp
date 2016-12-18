@@ -1,5 +1,5 @@
-<%@ page import="projet.Controller.EtudiantController" %>
-<%@ page import="projet.Controller.GroupeController" %><%--
+<%@ page import="projet.Controller.StudentController" %>
+<%@ page import="projet.Controller.GroupController" %><%--
   Created by IntelliJ IDEA.
   User: SMITHE
   Date: 01-Dec-16
@@ -13,10 +13,10 @@
 	<nav >
 		<ul >
 			<li >
-				<a href="<%= EtudiantController.getBasePath( true ) %>" >Etudiant</a >
+				<a href="<%= StudentController.getBasePath( true ) %>" >Etudiant</a >
 			</li >
 			<li >
-				<a href="<%= GroupeController.getBasePath( true ) %>" >Groupe</a >
+				<a href="<%= GroupController.getBasePath( true ) %>" >Groupe</a >
 			</li >
 		</ul >
 	</nav >

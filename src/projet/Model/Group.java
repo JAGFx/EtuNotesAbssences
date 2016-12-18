@@ -6,29 +6,29 @@ import java.util.Collection;
 /**
  * Created by SMITHE on 13-Dec-16.
  */
-public class Groupe {
+public class Group {
 	private static final Integer UNKNOWN_ID_GROUPE = -1;
 	
 	private final Integer id_Groupe;
 	private final String name;
-	private Collection< Etudiant > etudiants;
+	private Collection< Student > students;
 	
-	public Groupe() {
+	public Group() {
 		this.name = "No name";
 		this.id_Groupe = UNKNOWN_ID_GROUPE;
-		this.etudiants = new ArrayList<>();
+		this.students = new ArrayList<>();
 	}
 	
-	public Groupe( Integer id, String name ) {
+	public Group( Integer id, String name ) {
 		this.id_Groupe = id;
 		this.name = name;
-		this.etudiants = new ArrayList<>();
+		this.students = new ArrayList<>();
 	}
 	
-	public Groupe( Integer id, String name, Collection< Etudiant > etudiants ) {
+	public Group( Integer id, String name, Collection< Student > students ) {
 		this.id_Groupe = id;
 		this.name = name;
-		this.etudiants = etudiants;
+		this.students = students;
 	}
 	
 	public Integer getId() {
@@ -39,11 +39,11 @@ public class Groupe {
 		return name;
 	}
 	
-	public Collection< Etudiant > getEtudiants() {
-		return etudiants;
+	public Collection< Student > getStudents() {
+		return students;
 	}
 	
-	public void setEtudiants( Collection< Etudiant > etudiants ) {
-		this.etudiants = etudiants;
+	public void setStudents( Collection< Student > students ) {
+		this.students = students;
 	}
 }

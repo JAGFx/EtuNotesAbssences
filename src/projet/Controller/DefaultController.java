@@ -14,7 +14,7 @@ public final class DefaultController extends Controller {
 	public static final String BASE_PATH_CTRL = "/Default";
 	
 	public static String getBasePath( boolean fullPath ) {
-		return ( ( fullPath ) ? BASE_PATH_PROJECT : "" ) + EtudiantController.BASE_PATH_CTRL;
+		return ( ( fullPath ) ? BASE_PATH_PROJECT : "" ) + StudentController.BASE_PATH_CTRL;
 	}
 	
 	@Override
@@ -30,7 +30,7 @@ public final class DefaultController extends Controller {
 		/*if ( getMethod().equals( "get" ) && getAction().equals( "/details" ) )
 		
 		else*/
-		loadJSP( getServeltParam( "pathIndex" ), req, resp );
+		loadJSP( getServletParam( "pathIndex" ), req, resp );
 	}
 	
 	@Override

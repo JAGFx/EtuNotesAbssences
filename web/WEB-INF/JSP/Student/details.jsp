@@ -13,15 +13,15 @@
 	</head >
 	<body >
 		<jsp:include page="../Default/header.jsp" />
-		<jsp:useBean id="etu" class="projet.Model.Etudiant" scope="request" />
+		<jsp:useBean id="etu" class="projet.Model.Student" scope="request" />
 		<jsp:useBean id="nbAbsences" type="java.lang.Integer" scope="request" />
 		
 		<ul >
 			<li >ID: <%= etu.getId() %>
 			</li >
-			<li >Name: <%= etu.getNom() %>
+			<li >Name: <%= etu.getLastname() %>
 			</li >
-			<li >FirstName: <%= etu.getPrenom() %>
+			<li >FirstName: <%= etu.getFirstname() %>
 			</li >
 			<li > Absences:  <%= nbAbsences %>
 			</li >

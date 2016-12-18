@@ -2,24 +2,24 @@ package projet.Model;
 
 import java.util.ArrayList;
 
-public class Etudiant {
+public class Student {
 	
 	private Integer id;
-	private String prenom;
-	private String nom;
+	private String firstname;
+	private String lastname;
 	
 	private ArrayList< Float > noteEtudiant;
 	
-	public Etudiant() {
+	public Student() {
 		super();
 		noteEtudiant = new ArrayList<>();
 	}
 	
-	public Etudiant( Integer id, String prenom, String nom ) {
+	public Student( Integer id, String firstname, String lastname ) {
 		super();
 		this.id = id;
-		this.prenom = prenom;
-		this.nom = nom;
+		this.firstname = firstname;
+		this.lastname = lastname;
 		noteEtudiant = new ArrayList<>();
 	}
 	
@@ -31,20 +31,20 @@ public class Etudiant {
 		this.id = id;
 	}
 	
-	public String getPrenom() {
-		return prenom;
+	public String getFirstname() {
+		return firstname;
 	}
 	
-	public void setPrenom( String prenom ) {
-		this.prenom = prenom;
+	public void setFirstname( String firstname ) {
+		this.firstname = firstname;
 	}
 	
-	public String getNom() {
-		return nom;
+	public String getLastname() {
+		return lastname;
 	}
 	
-	public void setNom( String nom ) {
-		this.nom = nom;
+	public void setLastname( String lastname ) {
+		this.lastname = lastname;
 	}
 	
 	public ArrayList< Float > getNoteEtudiant() {
