@@ -4,6 +4,48 @@
 		 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 		 version="3.1">
 
+	<!-- ==================== FRONTAL ==================== -->
+	<!-- === Contrôleur  === -->
+	<servlet>
+		<servlet-name>FrontalController</servlet-name>
+		<servlet-class>projet.Controller.FrontalController</servlet-class>
+
+		<init-param>
+			<param-name>defaultController</param-name>
+			<param-value>/Default/</param-value>
+		</init-param>
+
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+
+	<!-- === Route  === -->
+	<servlet-mapping>
+		<servlet-name>FrontalController</servlet-name>
+		<url-pattern>/do/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- ==================== DEFAULT ==================== -->
+	<!-- === Contrôleur  === -->
+	<servlet>
+		<servlet-name>DefaultController</servlet-name>
+		<servlet-class>projet.Controller.DefaultController</servlet-class>
+
+		<init-param>
+			<param-name>defaultPath</param-name>
+			<param-value>accueil</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>pathIndex</param-name>
+			<param-value>/WEB-INF/JSP/Default/index.jsp</param-value>
+		</init-param>
+	</servlet>
+
+	<!-- === Route  === -->
+	<servlet-mapping>
+		<servlet-name>DefaultController</servlet-name>
+		<url-pattern>/Default/*</url-pattern>
+	</servlet-mapping>
 
 	<!-- ==================== ETUDIANT ==================== -->
 	<!-- === Contrôleur  === -->
@@ -67,8 +109,17 @@
 		<url-pattern>/Groupe/*</url-pattern>
 	</servlet-mapping>
 
-	<!--  fichiers d'accueil -->
-	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
-	</welcome-file-list>
+	<!-- ==================== CONTROLLER ACCESS ==================== -->
+	<!-- === Filtre  === -->
+	<filter>
+		<filter-name>ControllerAccess</filter-name>
+		<display-name>ControllerAccess</display-name>
+		<filter-class>projet.Filter.ControllerAccess</filter-class>
+	</filter>
+
+	<!-- === Route  === -->
+	<filter-mapping>
+		<filter-name>ControllerAccess</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 </web-app>

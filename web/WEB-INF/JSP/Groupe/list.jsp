@@ -12,6 +12,7 @@
 	</head >
 	<body >
 		<%@ page import="projet.Model.Groupe" %>
+		<%@ page import="projet.Controller.GroupeController" %>
 		
 		<jsp:include page="../Default/header.jsp" />
 		<jsp:useBean id="listGroupe" type="java.util.Collection<projet.Model.Groupe>" scope="request" />
@@ -21,7 +22,7 @@
 		<ul >
 			<% for ( Groupe groupe : listGroupe ) { %>
 			<li ><%= groupe.getName() %>
-				<a href="<% getServletConfig().getServletContext().getContextPath(); %>/Groupe/details?grp=<%= groupe.getId() %>" >Détail</a >
+				<a href="<%= GroupeController.getBasePath( true ) %>/details?grp=<%= groupe.getId() %>" >Détail</a >
 			</li >
 			<% } %>
 		</ul >

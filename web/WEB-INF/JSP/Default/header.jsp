@@ -1,4 +1,5 @@
-<%--
+<%@ page import="projet.Controller.EtudiantController" %>
+<%@ page import="projet.Controller.GroupeController" %><%--
   Created by IntelliJ IDEA.
   User: SMITHE
   Date: 01-Dec-16
@@ -12,10 +13,10 @@
 	<nav >
 		<ul >
 			<li >
-				<a href="<% getServletConfig().getServletContext().getContextPath(); %>/Etudiant/" >Etudiant</a >
+				<a href="<%= EtudiantController.getBasePath( true ) %>" >Etudiant</a >
 			</li >
 			<li >
-				<a href="<% getServletConfig().getServletContext().getContextPath(); %>/Groupe/" >Groupe</a >
+				<a href="<%= GroupeController.getBasePath( true ) %>" >Groupe</a >
 			</li >
 		</ul >
 	</nav >

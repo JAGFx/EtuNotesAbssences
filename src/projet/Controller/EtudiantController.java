@@ -1,5 +1,6 @@
 package projet.Controller;
 
+import projet.Components.Controller;
 import projet.Model.Etudiant;
 import projet.Model.GestionFactory;
 
@@ -15,11 +16,17 @@ import java.util.Collection;
  * Created by SMITHE on 13-Dec-16.
  */
 
-public class EtudiantController extends Controller {
-	private static final String BASE_PATH_CTRL = "/Etudiant";
+public final class EtudiantController extends Controller {
+	public static final String BASE_PATH_CTRL = "/Etudiant";
 	
 	public static String getBasePath( boolean fullPath ) {
-		return ( ( fullPath ) ? Controller.BASE_PATH_PROJECT : "" ) + BASE_PATH_CTRL;
+		return ( ( fullPath ) ? BASE_PATH_PROJECT : "" ) + EtudiantController.BASE_PATH_CTRL;
+	}
+	
+	@Override
+	public void init() throws ServletException {
+		super.init();
+		System.out.println( "-------------------- IN Etudiant Controller" );
 	}
 	
 	@Override
@@ -34,8 +41,6 @@ public class EtudiantController extends Controller {
 		
 		else
 			listEtudiantAction( req, resp );
-		
-		loadJSP( req, resp );
 	}
 	
 	// -------------------------------------------------------------------------------------------------------- Liste Etudiant
@@ -44,7 +49,7 @@ public class EtudiantController extends Controller {
 		req.setAttribute( "etusList", etusList );
 		
 		// Path
-		setPathJSP( "pathList" );
+		loadJSP( getServeltParam( "pathList" ), req, resp );
 	}
 	
 	// -------------------------------------------------------------------------------------------------------- Details Etudiant
@@ -58,7 +63,7 @@ public class EtudiantController extends Controller {
 		req.setAttribute( "nbAbsences", nbAbsences );
 		
 		// Path
-		setPathJSP( "pathDetails" );
+		loadJSP( getServeltParam( "pathDetails" ), req, resp );
 	}
 	
 	// -------------------------------------------------------------------------------------------------------- Liste notes Etudiant
@@ -77,6 +82,11 @@ public class EtudiantController extends Controller {
 		req.setAttribute( "etu", etu );
 		
 		// Path
-		setPathJSP( "pathListNotes" );
+		loadJSP( getServeltParam( "pathListNotes" ), req, resp );
+	}
+	
+	@Override
+	protected String getBasePathCtrl() {
+		return EtudiantController.BASE_PATH_CTRL;
 	}
 }

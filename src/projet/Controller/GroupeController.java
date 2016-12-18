@@ -1,5 +1,6 @@
 package projet.Controller;
 
+import projet.Components.Controller;
 import projet.Model.Etudiant;
 import projet.Model.Groupe;
 
@@ -13,7 +14,18 @@ import java.util.Collection;
 /**
  * Created by SMITHE on 13-Dec-16.
  */
-public class GroupeController extends Controller {
+public final class GroupeController extends Controller {
+	private static final String BASE_PATH_CTRL = "/Groupe";
+	
+	public static String getBasePath( boolean fullPath ) {
+		return ( ( fullPath ) ? BASE_PATH_PROJECT : "" ) + GroupeController.BASE_PATH_CTRL;
+	}
+	
+	@Override
+	public void init() throws ServletException {
+		super.init();
+		System.out.println( "-------------------- IN Groupe Controller" );
+	}
 	
 	@Override
 	protected void doGet( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
@@ -23,8 +35,6 @@ public class GroupeController extends Controller {
 			detailsGroupeAction( req, resp );
 		else
 			listGroupeAction( req, resp );
-		
-		loadJSP( req, resp );
 	}
 	
 	// -------------------------------------------------------------------------------------------------------- Liste groupe
@@ -36,7 +46,7 @@ public class GroupeController extends Controller {
 		);
 		req.setAttribute( "listGroupe", listGroupe );
 		
-		setPathJSP( "pathList" );
+		loadJSP( getServeltParam( "pathList" ), req, resp );
 	}
 	
 	// -------------------------------------------------------------------------------------------------------- Détails groupe
@@ -50,6 +60,11 @@ public class GroupeController extends Controller {
 		Groupe groupeA = new Groupe( 0, "GroupeA" );
 		
 		req.setAttribute( "groupe", groupeA );
-		setPathJSP( "pathDetails" );
+		loadJSP( getServeltParam( "pathDetails" ), req, resp );
+	}
+	
+	@Override
+	protected String getBasePathCtrl() {
+		return GroupeController.BASE_PATH_CTRL;
 	}
 }

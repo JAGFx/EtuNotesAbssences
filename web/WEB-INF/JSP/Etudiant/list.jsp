@@ -12,6 +12,7 @@
 	</head >
 	<body >
 		<%@ page import="projet.Model.Etudiant" %>
+		<%@ page import="projet.Controller.EtudiantController" %>
 		
 		<jsp:include page="../Default/header.jsp" />
 		<jsp:useBean id="etusList" type="java.util.Collection<projet.Model.Etudiant>" scope="request" />
@@ -22,8 +23,8 @@
 			<% for ( Etudiant etu : etusList ) { %>
 			<li >
 				<%= etu.getNom() %>
-				<a href="<% getServletConfig().getServletContext().getContextPath(); %>/Etudiant/details?etu=<%= etu.getId() %>" >Détail</a >
-				<a href="<% getServletConfig().getServletContext().getContextPath(); %>/Etudiant/notes?etu=<%= etu.getId() %>" >Notes</a >
+				<a href="<%= EtudiantController.getBasePath( true ) %>/details?etu=<%= etu.getId() %>" >Détail</a >
+				<a href="<%= EtudiantController.getBasePath( true ) %>/notes?etu=<%= etu.getId() %>" >Notes</a >
 			</li >
 			<% } %>
 		</ul >

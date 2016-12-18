@@ -1,4 +1,4 @@
-package projet.Controller;
+package projet.Components;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -12,18 +12,25 @@ import java.io.IOException;
  * Created by SMITHE on 13-Dec-16.
  */
 public class Controller extends HttpServlet {
-	protected static final String BASE_PATH_CTRL = "";
-	protected static final String BASE_PATH_PROJECT = "";
-	private String action, method, pathJSP;
+	public static final String BASE_PATH_CTRL = "";
+	public static final String BASE_PATH_PROJECT = "/do";
 	
-	protected static String getBasePath( boolean fullPath ) {
+	private String action, method;
+	
+	public static String getBasePath( boolean fullPath ) {
 		return ( ( fullPath ) ? BASE_PATH_PROJECT : "" ) + BASE_PATH_CTRL;
 	}
 	
 	protected void initController( HttpServletRequest req ) {
-		setAction( ( req.getPathInfo() != null )
-			? req.getPathInfo()
-			: getServletConfig().getInitParameter( "defaultPath" ) );
+		String pathInfo = req.getPathInfo();
+		if ( pathInfo != null )
+			pathInfo = pathInfo.substring( getBasePathCtrl().length() );
+		
+		System.out.println( "PathInfo: " + pathInfo );
+		
+		setAction( ( pathInfo != null )
+			? pathInfo
+			: getServeltParam( "defaultPath" ) );
 		
 		setMethod( req.getMethod().toLowerCase() );
 		
@@ -49,7 +56,7 @@ public class Controller extends HttpServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	protected void loadJSP( HttpServletRequest request, HttpServletResponse response )
+	protected void loadJSP( String url, HttpServletRequest request, HttpServletResponse response )
 		throws ServletException, IOException {
 		
 		// L'interface RequestDispatcher permet de transférer le contrôle à une
@@ -63,12 +70,17 @@ public class Controller extends HttpServlet {
 		// + Le flux de sortie n'est pas supprimé et les deux se cumulent
 		
 		ServletContext sc = getServletContext();
-		RequestDispatcher rd = sc.getRequestDispatcher( getPathJSP() );
+		RequestDispatcher rd = sc.getRequestDispatcher( url );
 		rd.forward( request, response );
 	}
 	
+	protected String getServeltParam( String name ) {
+		return getServletConfig().getInitParameter( name );
+	}
+	
+	
 	protected String getAction() {
-		return action;
+		return ( action == null ) ? "" : action;
 	}
 	
 	protected void setAction( String action ) {
@@ -76,21 +88,18 @@ public class Controller extends HttpServlet {
 	}
 	
 	protected String getMethod() {
-		return method;
+		return ( method == null ) ? "" : method;
 	}
 	
 	protected void setMethod( String method ) {
 		this.method = method;
 	}
 	
-	protected String getPathJSP() {
-		return pathJSP;
+	protected String getBasePathCtrl() {
+		return BASE_PATH_CTRL;
 	}
 	
-	/**
-	 * @param pathJSP Nom du parametre de Servlet pour un JSP
-	 */
-	protected void setPathJSP( String pathJSP ) {
-		this.pathJSP = getServletConfig().getInitParameter( pathJSP );
+	protected String getBasePathProject() {
+		return BASE_PATH_PROJECT;
 	}
 }
