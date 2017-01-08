@@ -1,7 +1,5 @@
 package projet.Entity;
 
-import projet.Entity.PK.NotePK;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -10,8 +8,6 @@ import java.io.Serializable;
  */
 
 @Entity
-//@IdClass(NotePK.class)
-//@Table
 public class Note implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Column( nullable = false )

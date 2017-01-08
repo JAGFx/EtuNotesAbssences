@@ -17,7 +17,6 @@ public class BaseController extends HttpServlet {
 	public static final String BASE_PATH_PROJECT = "/do";
 	
 	private String action, method;
-	private EntityManager em;
 	
 	public static String getBasePath( boolean fullPath ) {
 		return ( ( fullPath ) ? BASE_PATH_PROJECT : "" ) + BASE_PATH_CTRL;
@@ -33,7 +32,6 @@ public class BaseController extends HttpServlet {
 	public void init() throws ServletException {
 		super.init();
 		GestionFactory.open();
-		em = GestionFactory.factory.createEntityManager();
 	}
 	
 	protected void initController( HttpServletRequest req ) {
@@ -116,9 +114,5 @@ public class BaseController extends HttpServlet {
 	
 	protected String getBasePathProject() {
 		return BASE_PATH_PROJECT;
-	}
-	
-	protected EntityManager getEm() {
-		return em;
 	}
 }

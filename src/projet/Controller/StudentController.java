@@ -3,16 +3,12 @@ package projet.Controller;
 import projet.Component.BaseController;
 import projet.Entity.DAO.StudentDAO;
 import projet.Entity.Student;
-import projet.Component.GestionFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.LinkedHashMap;
 
 /**
  * Created by SMITHE on 13-Dec-16.
