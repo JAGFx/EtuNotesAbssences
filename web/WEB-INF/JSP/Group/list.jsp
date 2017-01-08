@@ -11,11 +11,11 @@
 		<title >Title</title >
 	</head >
 	<body >
-		<%@ page import="projet.Model.Group" %>
+		<%@ page import="projet.Entity.Group" %>
 		<%@ page import="projet.Controller.GroupController" %>
 		
 		<jsp:include page="../Default/header.jsp" />
-		<jsp:useBean id="listGroup" type="java.util.Collection<projet.Model.Group>" scope="request" />
+		<jsp:useBean id="listGroup" type="java.util.Collection<projet.Entity.Group>" scope="request" />
 		
 		<h2 >Liste des group</h2 >
 		

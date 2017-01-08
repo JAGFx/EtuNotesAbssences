@@ -12,14 +12,14 @@
 	</head >
 	<body >
 		<jsp:include page="../Default/header.jsp" />
-		<jsp:useBean id="etu" type="projet.Model.Student" scope="request" />
+		<jsp:useBean id="etu" type="projet.Entity.Student" scope="request" />
 		
 		<h2 >Etudiant : <%= etu.getLastname() + ' ' + etu.getFirstname() %>
 		</h2 >
 		
 		<h4 >Notes: </h4 >
 		<ul >
-			<% for ( Float note : etu.getNoteEtudiant() ) { %>
+			<% for ( Float note : etu.getNotes() ) { %>
 			<li ><%= note %>
 			</li >
 			<% } %>

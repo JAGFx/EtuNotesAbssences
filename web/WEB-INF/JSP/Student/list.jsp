@@ -11,11 +11,11 @@
 		<title >Title</title >
 	</head >
 	<body >
-		<%@ page import="projet.Model.Student" %>
+		<%@ page import="projet.Entity.Student" %>
 		<%@ page import="projet.Controller.StudentController" %>
 		
 		<jsp:include page="../Default/header.jsp" />
-		<jsp:useBean id="etusList" type="java.util.Collection<projet.Model.Student>" scope="request" />
+		<jsp:useBean id="etusList" type="java.util.Collection<projet.Entity.Student>" scope="request" />
 		
 		<h2 >Liste des students</h2 >
 		

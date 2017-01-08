@@ -1,4 +1,3 @@
-<%@ page import="projet.Model.Student" %>
 <%--
   Created by IntelliJ IDEA.
   User: SMITHE
@@ -6,6 +5,9 @@
   Time: 13:58
   To change this template use File | Settings | File Templates.
 --%>
+
+<%@ page import="projet.Entity.Student" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html >
 	<head >
@@ -13,7 +15,7 @@
 	</head >
 	<body >
 		<jsp:include page="../Default/header.jsp" />
-		<jsp:useBean id="group" class="projet.Model.Group" scope="request" />
+		<jsp:useBean id="group" class="projet.Entity.Group" scope="request" />
 		
 		<ul >
 			<li >ID: <%= group.getId() %>

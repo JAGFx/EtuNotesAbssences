@@ -1,8 +1,8 @@
 package projet.Controller;
 
-import projet.Components.Controller;
-import projet.Model.Group;
-import projet.Model.Student;
+import projet.Component.BaseController;
+import projet.Entity.Group;
+import projet.Entity.Student;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +14,7 @@ import java.util.Collection;
 /**
  * Created by SMITHE on 13-Dec-16.
  */
-public final class GroupController extends Controller {
+public final class GroupController extends BaseController {
 	private static final String BASE_PATH_CTRL = "/Group";
 	
 	public static String getBasePath( boolean fullPath ) {

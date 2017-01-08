@@ -1,6 +1,6 @@
 package projet.Filter;
 
-import projet.Components.Controller;
+import projet.Component.BaseController;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -21,13 +21,13 @@ public class ControllerAccess implements Filter {
 		System.out.println( "-------------------- BEGIN ControllerAccess FILTER" );
 		System.out.println( "RequestURI: " + request.getRequestURI() );
 		
-		Boolean callFromFrontalCtrl = request.getRequestURI().startsWith( Controller.BASE_PATH_PROJECT );
+		Boolean callFromFrontalCtrl = request.getRequestURI().startsWith( BaseController.BASE_PATH_PROJECT );
 		System.out.println( "Access from Frontal Controller: " + callFromFrontalCtrl );
 		
 		if ( !callFromFrontalCtrl ) {
 			System.out.println( "Forbidden access Servlet" );
 			System.out.println( "-------------------- END FILTER" );
-			response.sendRedirect( Controller.BASE_PATH_PROJECT );
+			response.sendRedirect( BaseController.BASE_PATH_PROJECT );
 			
 		} else {
 			System.out.println( "-------------------- END FILTER" );

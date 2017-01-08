@@ -1,6 +1,7 @@
 package projet.Controller;
 
-import projet.Components.Controller;
+import projet.Component.BaseController;
+import projet.Component.GestionFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +13,7 @@ import java.util.regex.Pattern;
 /**
  * Created by SMITHE on 16-Dec-16.
  */
-public final class FrontalController extends Controller {
+public final class FrontalController extends BaseController {
 	
 	@Override
 	public void init() throws ServletException {

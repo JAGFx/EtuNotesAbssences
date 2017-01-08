@@ -1,5 +1,6 @@
-package projet.Components;
+package projet.Component;
 
+import javax.persistence.EntityManager;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -11,14 +12,28 @@ import java.io.IOException;
 /**
  * Created by SMITHE on 13-Dec-16.
  */
-public class Controller extends HttpServlet {
+public class BaseController extends HttpServlet {
 	public static final String BASE_PATH_CTRL = "";
 	public static final String BASE_PATH_PROJECT = "/do";
 	
 	private String action, method;
+	private EntityManager em;
 	
 	public static String getBasePath( boolean fullPath ) {
 		return ( ( fullPath ) ? BASE_PATH_PROJECT : "" ) + BASE_PATH_CTRL;
+	}
+	
+	@Override
+	public void destroy() {
+		GestionFactory.close();
+		super.destroy();
+	}
+	
+	@Override
+	public void init() throws ServletException {
+		super.init();
+		GestionFactory.open();
+		em = GestionFactory.factory.createEntityManager();
 	}
 	
 	protected void initController( HttpServletRequest req ) {
@@ -101,5 +116,9 @@ public class Controller extends HttpServlet {
 	
 	protected String getBasePathProject() {
 		return BASE_PATH_PROJECT;
+	}
+	
+	protected EntityManager getEm() {
+		return em;
 	}
 }

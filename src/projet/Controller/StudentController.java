@@ -1,8 +1,9 @@
 package projet.Controller;
 
-import projet.Components.Controller;
-import projet.Model.Student;
-import projet.Model.GestionFactory;
+import projet.Component.BaseController;
+import projet.Entity.DAO.StudentDAO;
+import projet.Entity.Student;
+import projet.Component.GestionFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -11,13 +12,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.LinkedHashMap;
 
 /**
  * Created by SMITHE on 13-Dec-16.
  */
 
-public final class StudentController extends Controller {
+public final class StudentController extends BaseController {
 	public static final String BASE_PATH_CTRL = "/Student";
+	
+	private StudentDAO studentDAO;
 	
 	public static String getBasePath( boolean fullPath ) {
 		return ( ( fullPath ) ? BASE_PATH_PROJECT : "" ) + StudentController.BASE_PATH_CTRL;
@@ -26,6 +30,7 @@ public final class StudentController extends Controller {
 	@Override
 	public void init() throws ServletException {
 		super.init();
+		studentDAO = new StudentDAO();
 		System.out.println( "-------------------- IN Student Controller" );
 	}
 	
@@ -45,7 +50,7 @@ public final class StudentController extends Controller {
 	
 	// -------------------------------------------------------------------------------------------------------- Liste Student
 	private void listStudentAction( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
-		Collection< Student > etusList = GestionFactory.getEtudiants();
+		Collection< Student > etusList = studentDAO.findAll();
 		req.setAttribute( "etusList", etusList );
 		
 		// Path
@@ -55,11 +60,11 @@ public final class StudentController extends Controller {
 	// -------------------------------------------------------------------------------------------------------- Details Student
 	private void detailsStudentAction( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
 		// Set Etu past in params
-		Student etu = GestionFactory.getEtudiantById( Integer.valueOf( req.getParameter( "etu" ) ) );
+		Student etu = studentDAO.findByPrimaryKey( Integer.valueOf( req.getParameter( "etu" ) ) ); //GestionFactory.getEtudiantById( Integer.valueOf( req.getParameter( "etu" ) ) );
 		req.setAttribute( "etu", etu );
 		
 		// NbAvsence
-		int nbAbsences = GestionFactory.getAbsencesByEtudiantId( etu.getId() );
+		int nbAbsences = 0; // GestionFactory.getAbsencesByEtudiantId( etu.getId() );
 		req.setAttribute( "nbAbsences", nbAbsences );
 		
 		// Path
@@ -69,16 +74,16 @@ public final class StudentController extends Controller {
 	// -------------------------------------------------------------------------------------------------------- Liste notes Student
 	private void listNotesStudentAction( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
 		// Set Etu past in params
-		Student etu = GestionFactory.getEtudiantById( Integer.valueOf( req.getParameter( "etu" ) ) );
+		Student etu = studentDAO.findByPrimaryKey( Integer.valueOf( req.getParameter( "etu" ) ) ); // GestionFactory.getEtudiantById( Integer.valueOf( req.getParameter( "etu" ) ) );
 		
-		ArrayList< Float > listNotes = new ArrayList<>( Arrays.asList(
+		/*ArrayList< Float > listNotes = new ArrayList<>( Arrays.asList(
 			( float ) 12.5,
 			( float ) 13.5,
 			( float ) 14.5,
 			( float ) 15.5
 		) );
 		
-		etu.setNoteEtudiant( listNotes );
+		etu.setNoteEtudiant( listNotes );*/
 		req.setAttribute( "etu", etu );
 		
 		// Path

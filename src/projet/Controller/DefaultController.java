@@ -1,6 +1,6 @@
 package projet.Controller;
 
-import projet.Components.Controller;
+import projet.Component.BaseController;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -10,7 +10,7 @@ import java.io.IOException;
 /**
  * Created by SMITHE on 13-Dec-16.
  */
-public final class DefaultController extends Controller {
+public final class DefaultController extends BaseController {
 	public static final String BASE_PATH_CTRL = "/Default";
 	
 	public static String getBasePath( boolean fullPath ) {
@@ -26,10 +26,6 @@ public final class DefaultController extends Controller {
 	@Override
 	protected void doGet( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
 		initController( req );
-		
-		/*if ( getMethod().equals( "get" ) && getAction().equals( "/details" ) )
-		
-		else*/
 		loadJSP( getServletParam( "pathIndex" ), req, resp );
 	}
 	

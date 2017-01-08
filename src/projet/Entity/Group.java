@@ -1,16 +1,28 @@
-package projet.Model;
+package projet.Entity;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
 /**
  * Created by SMITHE on 13-Dec-16.
  */
-public class Group {
+
+@Entity
+@Table
+public class Group implements Serializable {
 	private static final Integer UNKNOWN_ID_GROUPE = -1;
+	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue( strategy = GenerationType.IDENTITY )
 	private final Integer id_Groupe;
+	
+	@Column( nullable = false, unique = true )
 	private final String name;
+	
+	@OneToMany( cascade = CascadeType.PERSIST, mappedBy = "group" )
 	private Collection< Student > students;
 	
 	public Group() {

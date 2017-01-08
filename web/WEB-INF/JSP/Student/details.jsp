@@ -1,4 +1,3 @@
-<%@ page import="projet.*" %>
 <%--
   Created by IntelliJ IDEA.
   User: SMITHE
@@ -13,7 +12,7 @@
 	</head >
 	<body >
 		<jsp:include page="../Default/header.jsp" />
-		<jsp:useBean id="etu" class="projet.Model.Student" scope="request" />
+		<jsp:useBean id="etu" class="projet.Entity.Student" scope="request" />
 		<jsp:useBean id="nbAbsences" type="java.lang.Integer" scope="request" />
 		
 		<ul >
