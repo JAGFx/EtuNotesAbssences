@@ -9,7 +9,7 @@ import java.util.LinkedHashMap;
 /**
  * Created by SMITHE on 09-Jan-17.
  */
-public class GroupDAO extends BaseDAO<Group> {
+public final class GroupDAO extends BaseDAO<Group> {
 	@Override
 	public Group findByPrimaryKey( Object id ) {
 		String query = "SELECT g FROM GroupStudents g WHERE g.id_Groupe = :id";

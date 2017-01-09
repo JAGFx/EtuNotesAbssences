@@ -13,7 +13,13 @@ public class Note implements Serializable {
 	public static final int GRADING_SCALE = 20;
 	
 	@Column( nullable = false )
-	float value;
+	private float value;
+	
+	@Column( nullable = false )
+	private int coef = 1;
+	
+	@Column(nullable = false)
+	private int graddingScale = GRADING_SCALE;
 	
 	@Id
 	@GeneratedValue( strategy = GenerationType.AUTO )
@@ -32,7 +38,7 @@ public class Note implements Serializable {
 	
 	@Override
 	public String toString() {
-		return Float.toString( value );
+		return value + " / " + graddingScale + " (Coef. " + coef + ")";
 	}
 	
 	public Student getStudent() {
@@ -49,5 +55,21 @@ public class Note implements Serializable {
 	
 	public void setId_note( int id_note ) {
 		this.id_note = id_note;
+	}
+	
+	public int getCoef() {
+		return coef;
+	}
+	
+	public void setCoef( int coef ) {
+		this.coef = coef;
+	}
+	
+	public int getGraddingScale() {
+		return graddingScale;
+	}
+	
+	public void setGraddingScale( int graddingScale ) {
+		this.graddingScale = graddingScale;
 	}
 }

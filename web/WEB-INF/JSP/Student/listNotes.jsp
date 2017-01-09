@@ -23,7 +23,7 @@
 		<h4 >Notes: </h4 >
 		<ul >
 			<% for ( Note note : etu.getNotes() ) { %>
-			<li ><%= note %> / <%= Note.GRADING_SCALE %>
+			<li ><%= note %>
 			</li >
 			<% } %>
 		</ul >
