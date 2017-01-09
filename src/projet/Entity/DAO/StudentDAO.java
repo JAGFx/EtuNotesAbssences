@@ -11,10 +11,10 @@ import java.util.LinkedHashMap;
  */
 public final class StudentDAO extends BaseDAO< Student > {
 	
-	public Student findByPrimaryKey( Object id ) {
+	public Student findByPrimaryKey( Object pk ) {
 		String query = "SELECT s FROM Student s WHERE s.stud_id = :id";
 		LinkedHashMap< String, Object > params = new LinkedHashMap<>();
-		params.put( "id", id );
+		params.put( "id", pk );
 		
 		return findOne( query, params );
 	}

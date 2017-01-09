@@ -17,6 +17,10 @@
 		<jsp:include page="../Default/header.jsp" />
 		<jsp:useBean id="group" class="projet.Entity.Group" scope="request" />
 		
+		<%-- TODO --%>
+		<a href="" >Modifier</a >
+		<a href="" >Supprimer</a >
+		
 		<ul >
 			<li >ID: <%= group.getId() %>
 			</li >

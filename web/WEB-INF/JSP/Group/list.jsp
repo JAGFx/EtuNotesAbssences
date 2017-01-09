@@ -18,6 +18,8 @@
 		<jsp:useBean id="listGroup" type="java.util.Collection<projet.Entity.Group>" scope="request" />
 		
 		<h2 >Liste des group</h2 >
+		<%-- TODO --%>
+		<a href="" >Ajouter un groupe</a >
 		
 		<ul >
 			<% for ( Group group : listGroup ) { %>

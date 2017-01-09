@@ -11,10 +11,10 @@ import java.util.LinkedHashMap;
  */
 public final class GroupDAO extends BaseDAO<Group> {
 	@Override
-	public Group findByPrimaryKey( Object id ) {
+	public Group findByPrimaryKey( Object pk ) {
 		String query = "SELECT g FROM GroupStudents g WHERE g.id_Groupe = :id";
 		LinkedHashMap< String, Object > params = new LinkedHashMap<>();
-		params.put( "id", id );
+		params.put( "id", pk );
 		
 		return findOne( query, params );
 	}

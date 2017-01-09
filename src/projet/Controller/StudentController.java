@@ -60,7 +60,8 @@ public final class StudentController extends BaseController {
 		req.setAttribute( "etu", etu );
 		
 		// NbAvsence
-		int nbAbsences = 0; // GestionFactory.getAbsencesByEtudiantId( etu.getId() );
+		// TODO NB Absence
+		int nbAbsences = 0;
 		req.setAttribute( "nbAbsences", nbAbsences );
 		
 		// Path
@@ -70,16 +71,7 @@ public final class StudentController extends BaseController {
 	// -------------------------------------------------------------------------------------------------------- Liste notes Student
 	private void listNotesStudentAction( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
 		// Set Etu past in params
-		Student etu = studentDAO.findByPrimaryKey( Integer.valueOf( req.getParameter( "etu" ) ) ); // GestionFactory.getEtudiantById( Integer.valueOf( req.getParameter( "etu" ) ) );
-		
-		/*ArrayList< Float > listNotes = new ArrayList<>( Arrays.asList(
-			( float ) 12.5,
-			( float ) 13.5,
-			( float ) 14.5,
-			( float ) 15.5
-		) );
-		
-		etu.setNoteEtudiant( listNotes );*/
+		Student etu = studentDAO.findByPrimaryKey( Integer.valueOf( req.getParameter( "etu" ) ) );
 		req.setAttribute( "etu", etu );
 		
 		// Path

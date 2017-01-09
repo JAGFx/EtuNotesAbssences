@@ -52,7 +52,7 @@ public abstract class BaseDAO< T > {
 		return ( T ) q.getSingleResult();
 	}
 	
-	public abstract T findByPrimaryKey( Object id );
+	public abstract T findByPrimaryKey( Object pk );
 	
 	public T findOne( String param ) {
 		return em.find( getEntityBeanType(), param );

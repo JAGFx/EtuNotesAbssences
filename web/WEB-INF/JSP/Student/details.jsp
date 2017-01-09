@@ -15,6 +15,10 @@
 		<jsp:useBean id="etu" class="projet.Entity.Student" scope="request" />
 		<jsp:useBean id="nbAbsences" type="java.lang.Integer" scope="request" />
 		
+		<%-- TODO --%>
+		<a href="" >Modifier</a >
+		<a href="" >Supprimer</a >
+		
 		<ul >
 			<li >ID: <%= etu.getId() %>
 			</li >

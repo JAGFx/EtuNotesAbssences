@@ -10,13 +10,14 @@ import java.io.Serializable;
 @Entity
 public class Note implements Serializable {
 	private static final long serialVersionUID = 1L;
-	public static final int GRADING_SCALE = 20;
+	private static final int GRADING_SCALE = 20;
+	private static final int COEF = 1;
 	
 	@Column( nullable = false )
 	private float value;
 	
 	@Column( nullable = false )
-	private int coef = 1;
+	private int coef = COEF;
 	
 	@Column(nullable = false)
 	private int graddingScale = GRADING_SCALE;
@@ -38,7 +39,7 @@ public class Note implements Serializable {
 	
 	@Override
 	public String toString() {
-		return value + " / " + graddingScale + " (Coef. " + coef + ")";
+		return getValue() + " / " + getGraddingScale() + " (Coef. " + getCoef() + ")";
 	}
 	
 	public Student getStudent() {
