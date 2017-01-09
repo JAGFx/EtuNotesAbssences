@@ -8,6 +8,9 @@ import java.util.Map.Entry;
 /**
  * Created by emsm on 08/01/2017.
  */
+
+// TODO Gestion erreur EM
+// TODO QueryBuilder
 public abstract class BaseDAO< T > {
 	private EntityManager em;
 	private Class< T > entityBeanType;
@@ -49,7 +52,7 @@ public abstract class BaseDAO< T > {
 		return ( T ) q.getSingleResult();
 	}
 	
-	public abstract T findByPrimaryKey( int id );
+	public abstract T findByPrimaryKey( Object id );
 	
 	public T findOne( String param ) {
 		return em.find( getEntityBeanType(), param );

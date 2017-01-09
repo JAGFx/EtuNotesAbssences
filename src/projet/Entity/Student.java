@@ -73,4 +73,9 @@ public class Student implements Serializable {
 	public void setNotes( Collection< Note > notes ) {
 		this.notes = notes;
 	}
+	
+	@Override
+	public String toString() {
+		return firstname + " " + lastname + " < " + group + " >";
+	}
 }

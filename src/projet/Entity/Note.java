@@ -10,11 +10,15 @@ import java.io.Serializable;
 @Entity
 public class Note implements Serializable {
 	private static final long serialVersionUID = 1L;
+	public static final int GRADING_SCALE = 20;
+	
 	@Column( nullable = false )
 	float value;
+	
 	@Id
 	@GeneratedValue( strategy = GenerationType.AUTO )
 	private int id_note;
+	
 	@ManyToOne( cascade = { CascadeType.MERGE, CascadeType.PERSIST }, optional = false )
 	private Student student;
 	

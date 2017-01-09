@@ -57,4 +57,9 @@ public class Group implements Serializable {
 	public void setStudents( Collection< Student > students ) {
 		this.students = students;
 	}
+	
+	@Override
+	public String toString() {
+		return name;
+	}
 }
