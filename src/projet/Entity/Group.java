@@ -9,8 +9,7 @@ import java.util.Collection;
  * Created by SMITHE on 13-Dec-16.
  */
 
-@Entity
-@Table
+@Entity(name = "GroupStudents")
 public class Group implements Serializable {
 	private static final Integer UNKNOWN_ID_GROUPE = -1;
 	private static final long serialVersionUID = 1L;
@@ -19,7 +18,7 @@ public class Group implements Serializable {
 	@GeneratedValue( strategy = GenerationType.IDENTITY )
 	private final Integer id_Groupe;
 	
-	@Column( nullable = false, unique = true )
+	@Column( nullable = false )
 	private final String name;
 	
 	@OneToMany( cascade = CascadeType.PERSIST, mappedBy = "group" )

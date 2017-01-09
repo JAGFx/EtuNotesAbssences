@@ -11,18 +11,18 @@ import java.util.LinkedHashMap;
  */
 public final class StudentDAO extends BaseDAO< Student > {
 	
-	public Student findByPrimaryKey( Integer id ) {
-		String query = "SELECT * FROM Student s WHERE s.id = :id";
-		LinkedHashMap< String, String > params = new LinkedHashMap<>();
-		params.put( "id", Integer.toString( id ) );
+	public Student findByPrimaryKey( int id ) {
+		String query = "SELECT s FROM Student s WHERE s.stud_id = :id";
+		LinkedHashMap< String, Object > params = new LinkedHashMap<>();
+		params.put( "id",  id );
 		
 		return findOne( query, params );
 	}
 	
 	@Override
 	public Collection findAll() {
-		String query = "SELECT * FROM Student";
-		LinkedHashMap< String, String > param = new LinkedHashMap<>();
+		String query = "SELECT s FROM Student s";
+		LinkedHashMap< String, Object > param = new LinkedHashMap<>();
 		return findAll( query, param );
 	}
 }
