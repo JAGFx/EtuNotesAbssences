@@ -72,6 +72,11 @@
 			<param-name>pathListNotes</param-name>
 			<param-value>/WEB-INF/JSP/Student/listNotes.jsp</param-value>
 		</init-param>
+
+		<init-param>
+			<param-name>pathNewStudent</param-name>
+			<param-value>/WEB-INF/JSP/Student/new.jsp</param-value>
+		</init-param>
 	</servlet>
 
 	<!-- === Route  === -->

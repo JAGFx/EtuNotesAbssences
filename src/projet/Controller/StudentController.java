@@ -40,8 +40,18 @@ public final class StudentController extends BaseController {
 		else if ( getMethod().equals( "get" ) && getAction().equals( "/notes" ) )
 			listNotesStudentAction( req, resp );
 		
+		else if ( getMethod().equals( "get" ) && getAction().equals( "/new" ) )
+			newStudentAction( req, resp );
+		
 		else
 			listStudentAction( req, resp );
+	}
+	
+	// -------------------------------------------------------------------------------------------------------- Add Student
+	private void newStudentAction( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
+		
+		// Path
+		loadJSP( getServletParam( "pathNewStudent" ), req, resp );
 	}
 	
 	// -------------------------------------------------------------------------------------------------------- Liste Student
