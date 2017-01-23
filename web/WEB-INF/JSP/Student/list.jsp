@@ -20,8 +20,7 @@
 		<jsp:useBean id="etusList" type="java.util.Collection<projet.Entity.Student>" scope="request" />
 		
 		<h2 >Liste des students</h2 >
-		<%-- TODO --%>
-		<a href="" >Ajouter un Etudiant</a >
+		<a href="<%= StudentController.getBasePath( true ) %>/new" >Ajouter un Etudiant</a >
 		
 		<ul >
 			<% for ( Student etu : etusList ) { %>

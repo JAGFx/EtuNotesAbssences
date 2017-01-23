@@ -118,7 +118,6 @@
 	<!-- === Filtre  === -->
 	<filter>
 		<filter-name>ControllerAccess</filter-name>
-		<display-name>ControllerAccess</display-name>
 		<filter-class>projet.Filter.ControllerAccess</filter-class>
 	</filter>
 

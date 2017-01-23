@@ -1,9 +1,12 @@
 package projet.Controller;
 
 import projet.Component.BaseController;
+import projet.Entity.DAO.GroupDAO;
 import projet.Entity.DAO.StudentDAO;
+import projet.Entity.Group;
 import projet.Entity.Student;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +21,7 @@ public final class StudentController extends BaseController {
 	public static final String BASE_PATH_CTRL = "/Student";
 	
 	private StudentDAO studentDAO;
+	private GroupDAO groupDAO;
 	
 	public static String getBasePath( boolean fullPath ) {
 		return ( ( fullPath ) ? BASE_PATH_PROJECT : "" ) + StudentController.BASE_PATH_CTRL;
@@ -27,6 +31,7 @@ public final class StudentController extends BaseController {
 	public void init() throws ServletException {
 		super.init();
 		studentDAO = new StudentDAO();
+		groupDAO = new GroupDAO();
 		System.out.println( "-------------------- IN Student Controller" );
 	}
 	
@@ -40,7 +45,7 @@ public final class StudentController extends BaseController {
 		else if ( getMethod().equals( "get" ) && getAction().equals( "/notes" ) )
 			listNotesStudentAction( req, resp );
 		
-		else if ( getMethod().equals( "get" ) && getAction().equals( "/new" ) )
+		else if ( getAction().equals( "/new" ) )
 			newStudentAction( req, resp );
 		
 		else
@@ -49,9 +54,32 @@ public final class StudentController extends BaseController {
 	
 	// -------------------------------------------------------------------------------------------------------- Add Student
 	private void newStudentAction( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
+		System.out.println( req.getParameterMap().toString() );
 		
-		// Path
-		loadJSP( getServletParam( "pathNewStudent" ), req, resp );
+		if ( req.getParameterMap().isEmpty() ) {
+			Collection< Group > groups = groupDAO.findAll();
+			req.setAttribute( "groups", groups );
+			
+			// Path
+			loadJSP( getServletParam( "pathNewStudent" ), req, resp );
+			
+		} else {
+			// TODO TRY CATCH
+			Group group = groupDAO.findByPrimaryKey( Integer.valueOf( req.getParameter( "group" ) ) );
+			
+			Student student = new Student();
+			student.setFirstname( req.getParameter( "firstname" ) );
+			student.setLastname( req.getParameter( "lastname" ) );
+			//Student student = new Student( null, req.getParameter( "firstname" ), req.getParameter( "lastname" ) );
+			student.setGroup( group );
+			studentDAO.addEntity( student );
+			
+			System.out.println( "+++++++++++++++++++ >> Student added" );
+			
+			req
+				.getRequestDispatcher( StudentController.getBasePath( true ) )
+				.forward( req, resp );
+		}
 	}
 	
 	// -------------------------------------------------------------------------------------------------------- Liste Student
