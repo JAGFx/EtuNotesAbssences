@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page import="projet.Entity.Note" %>
+<%@ page import="projet.Controller.NoteController" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="fr">
@@ -20,7 +21,7 @@
 		<h2 >Etudiant : <%= etu %>
 		</h2 >
 		
-		<a href="" >Ajouter</a >
+		<a href="<%= NoteController.getBasePath( true ) %>/new" >Ajouter</a >
 		
 		<h4 >Notes: </h4 >
 		<ul >

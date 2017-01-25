@@ -59,7 +59,7 @@ public final class StudentController extends BaseController {
 	}
 	
 	
-	// -------------------------------------------------------------------------------------------------------- Add Student
+	// -------------------------------------------------------------------------------------------------------- New Student
 	private void newStudentAction( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
 		if ( req.getParameterMap().isEmpty() ) {
 			Collection< Group > groups = groupDAO.findAll();

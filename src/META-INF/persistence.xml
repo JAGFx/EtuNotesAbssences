@@ -21,7 +21,7 @@
 			<!--  en SqlLite, sur un fichier de votre arborescence (en windows c:/etc...) -->
 			<!--  en MySql, sur une url du serveur par exemple en local http;//localhost:3306 -->
 			<property name="javax.persistence.jdbc.url"
-					  value="jdbc:sqlite:D:\emsm\Documents\Projet\Java\JEE\EtuNotesAbssences\web\WEB-INF\data\project.db" />
+					  value="jdbc:sqlite:C:/Users/SMITHE/Documents/Java/JEE/EtuNotesAbssences/web/WEB-INF/data/project.db" />
 			<property name="javax.persistence.jdbc.user" value="" />
 			<property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC" />
 
