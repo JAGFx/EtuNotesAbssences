@@ -1,6 +1,7 @@
 package projet.Entity.DAO;
 
 import projet.Component.BaseDAO;
+import projet.Component.QueryBuilder;
 import projet.Entity.Student;
 
 import java.util.Collection;
@@ -12,17 +13,16 @@ import java.util.LinkedHashMap;
 public final class StudentDAO extends BaseDAO< Student > {
 	
 	public Student findByPrimaryKey( Object pk ) {
-		String query = "SELECT s FROM Student s WHERE s.stud_id = :id";
-		LinkedHashMap< String, Object > params = new LinkedHashMap<>();
-		params.put( "id", pk );
+		QueryBuilder qb = new QueryBuilder( "SELECT s FROM Student s WHERE s.stud_id = :id" );
+		qb.addParam( "id", pk );
 		
-		return findOne( query, params );
+		return findOne( qb.getQuery(), qb.getParams() );
 	}
 	
 	@Override
 	public Collection findAll() {
-		String query = "SELECT s FROM Student s";
-		LinkedHashMap< String, Object > param = new LinkedHashMap<>();
-		return findAll( query, param );
+		QueryBuilder qb = new QueryBuilder( "SELECT s FROM Student s" );
+		
+		return findAll( qb.getQuery(), qb.getParams() );
 	}
 }

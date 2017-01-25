@@ -21,7 +21,10 @@ public abstract class BaseDAO< T > {
 	
 	public void addEntity( T entity ) {
 		try {
+			em.getTransaction().begin();
 			em.persist( entity );
+			em.getTransaction().commit();
+			//em.close();
 		} catch ( Exception e ) {
 			//throw new DAOException( e );
 			System.out.println( e.getMessage() );
@@ -30,7 +33,10 @@ public abstract class BaseDAO< T > {
 	
 	public void updateEntity( T entity ) {
 		try {
+			em.getTransaction().begin();
 			em.merge( entity );
+			em.getTransaction().commit();
+			//em.close();
 		} catch ( Exception e ) {
 			//throw new DAOException( e );
 			System.out.println( e.getMessage() );
@@ -39,7 +45,10 @@ public abstract class BaseDAO< T > {
 	
 	public void removeEntity( T entity ) {
 		try {
+			em.getTransaction().begin();
 			em.remove( entity );
+			em.getTransaction().commit();
+			//em.close();
 		} catch ( Exception e ) {
 			//throw new DAOException( e );
 			System.out.println( e.getMessage() );
@@ -51,7 +60,7 @@ public abstract class BaseDAO< T > {
 		
 		return ( T ) q.getSingleResult();
 	}
-	
+	// -------------------------------------------------------------------------------------------------------- Liste notes Student
 	public abstract T findByPrimaryKey( Object pk );
 	
 	public T findOne( String param ) {
