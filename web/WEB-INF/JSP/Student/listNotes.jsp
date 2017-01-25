@@ -21,7 +21,7 @@
 		<h2 >Etudiant : <%= etu %>
 		</h2 >
 		
-		<a href="<%= NoteController.getBasePath( true ) %>/new" >Ajouter</a >
+		<a href="<%= NoteController.getBasePath( true ) %>/new?etu=<%= etu.getId() %>" >Ajouter</a >
 		
 		<h4 >Notes: </h4 >
 		<ul >

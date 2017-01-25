@@ -26,7 +26,7 @@ public class Note implements Serializable {
 	@GeneratedValue( strategy = GenerationType.AUTO )
 	private int id_note;
 	
-	@ManyToOne( cascade = { CascadeType.MERGE, CascadeType.PERSIST }, optional = false )
+	@ManyToOne( cascade = { CascadeType.MERGE } )
 	private Student student;
 	
 	public float getValue() {

@@ -15,14 +15,19 @@ import java.util.Collection;
 /**
  * Created by SMITHE on 24-Jan-17.
  */
-public class NoteController extends BaseController {
-	public static final String BASE_PATH_CTRL = "/Note";
+public final class NoteController extends BaseController {
+	private static final String BASE_PATH_CTRL = "/Note";
 	
 	private NoteDAO noteDAO;
 	private StudentDAO studentDAO;
 	
 	public static String getBasePath( boolean fullPath ) {
 		return ( ( fullPath ) ? BASE_PATH_PROJECT : "" ) + NoteController.BASE_PATH_CTRL;
+	}
+	
+	@Override
+	protected String getBasePathCtrl() {
+		return NoteController.BASE_PATH_CTRL;
 	}
 	
 	@Override
@@ -37,16 +42,16 @@ public class NoteController extends BaseController {
 	protected void doGet( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
 		initController( req );
 		
-		if ( getMethod().equals( "get" ) && getAction().equals( "/details" ) )
+		if ( methodIsGET() && actionMatch( "/details" ) )
 			detailsNoteAction( req, resp );
 		
-		else if ( getMethod().equals( "get" ) && getAction().equals( "/new" ) )
+		else if ( actionMatch( "/new" ) )
 			newNoteAction( req, resp );
 		
-		else if ( getMethod().equals( "get" ) && getAction().equals( "/edit" ) )
+		else if ( methodIsGET() && actionMatch( "/edit" ) )
 			editNoteAction( req, resp );
 		
-		else if ( getMethod().equals( "get" ) && getAction().equals( "/delete" ) )
+		else if ( methodIsGET() && actionMatch( "/delete" ) )
 			deleteNoteAction( req, resp );
 		
 		else
@@ -65,23 +70,36 @@ public class NoteController extends BaseController {
 	}
 	
 	// -------------------------------------------------------------------------------------------------------- New Note
+	// FIXME: Bug not fetch after add, but present in DB
 	private void newNoteAction( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
-		Student student = studentDAO.findByPrimaryKey( Integer.valueOf( req.getParameter( "student" ) ) );
+		Student student = studentDAO.findByPrimaryKey( Integer.valueOf( req.getParameter( "etu" ) ) );
 		
-		Collection<Student> students = studentDAO.findAll();
-		req.setAttribute( "students", students );
-		
-		Note note = new Note();
-		note.setCoef( Integer.valueOf( req.getParameter( "note" ) ) );
-		note.setGraddingScale( Integer.valueOf( req.getParameter( "gradingScale" ) ) );
-		note.setValue( Float.valueOf( req.getParameter( "value" ) ) );
-		note.setStudent( student );
-		
-		noteDAO.addEntity( note );
-		
-		req
-			.getRequestDispatcher( NoteController.getBasePath( true ) )
-			.forward( req, resp );
+		if ( methodIsGET() ) {
+			Collection< Student > students = studentDAO.findAll();
+			req.setAttribute( "students", students );
+			
+			loadJSP( getServletParam( "pathNew" ), req, resp );
+			
+		} else {
+			Note note = new Note();
+			note.setCoef( Integer.valueOf( req.getParameter( "coef" ) ) );
+			note.setGraddingScale( Integer.valueOf( req.getParameter( "gradingScale" ) ) );
+			note.setValue( Float.valueOf( req.getParameter( "value" ) ) );
+			note.setStudent( student );
+			
+			System.out.println( note );
+			System.out.println( student + "  --- " + student.getId() );
+			
+			noteDAO.addEntity( note );
+			//student.addNote( note );
+			//System.out.println( student.getNotes().size() );
+			
+			//studentDAO.updateEntity( student );
+			
+			req
+				.getRequestDispatcher( NoteController.getBasePath( true ) )
+				.forward( req, resp );
+		}
 	}
 	
 	// -------------------------------------------------------------------------------------------------------- Edit Note
@@ -107,10 +125,5 @@ public class NoteController extends BaseController {
 		req
 			.getRequestDispatcher( NoteController.getBasePath( true ) )
 			.forward( req, resp );
-	}
-	
-	@Override
-	protected String getBasePathCtrl() {
-		return StudentController.BASE_PATH_CTRL;
 	}
 }

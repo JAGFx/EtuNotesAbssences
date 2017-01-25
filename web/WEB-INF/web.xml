@@ -119,6 +119,35 @@
 		<url-pattern>/Group/*</url-pattern>
 	</servlet-mapping>
 
+	<!-- ==================== NOTE ==================== -->
+	<!-- === Contrôleur  === -->
+	<servlet>
+		<servlet-name>NoteController</servlet-name>
+		<servlet-class>projet.Controller.NoteController</servlet-class>
+
+		<init-param>
+			<param-name>defaultPath</param-name>
+			<param-value>accueil</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>pathList</param-name>
+			<param-value>/WEB-INF/JSP/Note/list.jsp</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>pathNew</param-name>
+			<param-value>/WEB-INF/JSP/Note/new.jsp</param-value>
+		</init-param>
+	</servlet>
+
+	<!-- === Route  === -->
+	<servlet-mapping>
+		<servlet-name>NoteController</servlet-name>
+		<url-pattern>/Note/*</url-pattern>
+	</servlet-mapping>
+
+
 	<!-- ==================== CONTROLLER ACCESS ==================== -->
 	<!-- === Filtre  === -->
 	<filter>

@@ -24,13 +24,13 @@
 			</div >
 			
 			<div class="form-group" >
-				<label for="gradingScale" >Barème</label >
-				<input type="number" id="gradingScale" name="gradingScale" class="form-control" >
+				<label for="value" >Valeur</label >
+				<input type="text" id="value" name="value" class="form-control" >
 			</div >
 			
 			<div class="form-group" >
-				<label for="value" >Valeur</label >
-				<input type="text" id="value" name="value" class="form-control" >
+				<label for="gradingScale" >Barème</label >
+				<input type="number" id="gradingScale" name="gradingScale" class="form-control" >
 			</div >
 			
 			<div class="form-group" >

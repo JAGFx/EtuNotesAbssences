@@ -19,7 +19,7 @@ public class Student implements Serializable {
 	@Column( nullable = false )
 	private String lastname;
 	
-	@ManyToOne( cascade = { CascadeType.MERGE }, optional = false )
+	@ManyToOne( cascade = { CascadeType.MERGE } )
 	private Group group;
 	
 	@OneToMany( cascade = CascadeType.ALL, mappedBy = "student" )
@@ -72,6 +72,10 @@ public class Student implements Serializable {
 	
 	public void setNotes( Collection< Note > notes ) {
 		this.notes = notes;
+	}
+	
+	public void addNote( Note note ) {
+		notes.add( note );
 	}
 	
 	@Override
