@@ -10,7 +10,6 @@ import java.util.Map.Entry;
  */
 
 // TODO Gestion erreur EM
-// TODO QueryBuilder
 public abstract class BaseDAO< T > {
 	private EntityManager em;
 	private Class< T > entityBeanType;

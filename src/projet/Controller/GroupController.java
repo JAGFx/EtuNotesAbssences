@@ -33,7 +33,7 @@ public final class GroupController extends BaseController {
 	protected void doGet( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
 		initController( req );
 		
-		if ( getMethod().equals( "get" ) && getAction().equals( "/details" ) )
+		if ( methodIsGET() && actionMatch( "/details" ) )
 			detailsGroupAction( req, resp );
 		else
 			listGroupAction( req, resp );

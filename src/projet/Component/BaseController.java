@@ -112,6 +112,18 @@ public class BaseController extends HttpServlet {
 		return BASE_PATH_CTRL;
 	}
 	
+	protected boolean methodIsGET() {
+		return getMethod().equals( "get" );
+	}
+	
+	protected boolean methodIsPOST() {
+		return getMethod().equals( "post" );
+	}
+	
+	protected boolean actionMatch( String path ) {
+		return getAction().equals( path );
+	}
+	
 	protected String getBasePathProject() {
 		return BASE_PATH_PROJECT;
 	}

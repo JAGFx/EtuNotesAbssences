@@ -39,19 +39,19 @@ public final class StudentController extends BaseController {
 	protected void doGet( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
 		initController( req );
 		
-		if ( getMethod().equals( "get" ) && getAction().equals( "/details" ) )
+		if ( methodIsGET() && actionMatch( "/details" ) )
 			detailsStudentAction( req, resp );
 		
-		else if ( getMethod().equals( "get" ) && getAction().equals( "/notes" ) )
+		else if ( methodIsGET() && actionMatch( "/notes" ) )
 			listNotesStudentAction( req, resp );
 		
-		else if ( getAction().equals( "/new" ) )
+		else if ( actionMatch( "/new" ) )
 			newStudentAction( req, resp );
 		
-		else if ( getAction().equals( "/edit" ) )
+		else if ( actionMatch( "/edit" ) )
 			updateStudentAction( req, resp );
 		
-		else if ( getMethod().equals( "get" ) && getAction().equals( "/delete" ) )
+		else if ( methodIsGET() && actionMatch( "/delete" ) )
 			deleteStudentAction( req, resp );
 		
 		else
@@ -61,7 +61,7 @@ public final class StudentController extends BaseController {
 	
 	// -------------------------------------------------------------------------------------------------------- New Student
 	private void newStudentAction( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
-		if ( req.getParameterMap().isEmpty() ) {
+		if ( methodIsGET() ) {
 			Collection< Group > groups = groupDAO.findAll();
 			req.setAttribute( "groups", groups );
 			
@@ -89,7 +89,7 @@ public final class StudentController extends BaseController {
 	private void updateStudentAction( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
 		System.out.println( Integer.valueOf( req.getParameter( "etu" ) ) );
 		
-		if ( getMethod().equals( "get" ) ) {
+		if ( methodIsGET() ) {
 			System.out.println( Integer.valueOf( req.getParameter( "etu" ) ) );
 			
 			HashSet< Group > groups = groupDAO.findAll();

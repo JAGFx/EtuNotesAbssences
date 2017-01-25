@@ -9,7 +9,7 @@ import java.util.Collection;
 /**
  * Created by SMITHE on 25-Jan-17.
  */
-public class NoteDAO extends BaseDAO< Note > {
+public final class NoteDAO extends BaseDAO< Note > {
 	@Override
 	public Note findByPrimaryKey( Object pk ) {
 		QueryBuilder qb = new QueryBuilder( "SELECT n FROM Note n WHERE id_note = :idnote" );
