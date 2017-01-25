@@ -1,4 +1,4 @@
-<%--
+<%@ page import="projet.Controller.StudentController" %><%--
   Created by IntelliJ IDEA.
   User: SMITHE
   Date: 01-Dec-16
@@ -18,8 +18,8 @@
 		<jsp:useBean id="nbAbsences" type="java.lang.Integer" scope="request" />
 		
 		<%-- TODO --%>
-		<a href="" >Modifier</a >
-		<a href="" >Supprimer</a >
+		<a href="<%= StudentController.getBasePath( true ) %>/edit?etu=<%= etu.getId() %>" >Modifier</a >
+		<a href="<%= StudentController.getBasePath( true ) %>/delete?etu=<%= etu.getId() %>" >Supprimer</a >
 		
 		<ul >
 			<li >ID: <%= etu.getId() %>

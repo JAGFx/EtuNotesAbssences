@@ -20,12 +20,17 @@
 		<h2 >Etudiant : <%= etu %>
 		</h2 >
 		
+		<a href="" >Ajouter</a >
+		
 		<h4 >Notes: </h4 >
 		<ul >
 			<% for ( Note note : etu.getNotes() ) { %>
 			<li ><%= note %>
 			</li >
 			<% } %>
+			
+			<a href="" >Modifier</a >
+			<a href="" >Supprimier</a >
 		</ul >
 		
 		<jsp:include page="../Default/foot.jsp" />

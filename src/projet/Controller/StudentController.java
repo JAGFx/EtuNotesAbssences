@@ -6,12 +6,12 @@ import projet.Entity.DAO.StudentDAO;
 import projet.Entity.Group;
 import projet.Entity.Student;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.HashSet;
 
 /**
  * Created by SMITHE on 13-Dec-16.
@@ -48,14 +48,19 @@ public final class StudentController extends BaseController {
 		else if ( getAction().equals( "/new" ) )
 			newStudentAction( req, resp );
 		
+		else if ( getAction().equals( "/edit" ) )
+			updateStudentAction( req, resp );
+		
+		else if ( getMethod().equals( "get" ) && getAction().equals( "/delete" ) )
+			deleteStudentAction( req, resp );
+		
 		else
 			listStudentAction( req, resp );
 	}
 	
+	
 	// -------------------------------------------------------------------------------------------------------- Add Student
 	private void newStudentAction( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
-		System.out.println( req.getParameterMap().toString() );
-		
 		if ( req.getParameterMap().isEmpty() ) {
 			Collection< Group > groups = groupDAO.findAll();
 			req.setAttribute( "groups", groups );
@@ -67,19 +72,63 @@ public final class StudentController extends BaseController {
 			// TODO TRY CATCH
 			Group group = groupDAO.findByPrimaryKey( Integer.valueOf( req.getParameter( "group" ) ) );
 			
-			Student student = new Student();
-			student.setFirstname( req.getParameter( "firstname" ) );
-			student.setLastname( req.getParameter( "lastname" ) );
-			//Student student = new Student( null, req.getParameter( "firstname" ), req.getParameter( "lastname" ) );
+			Student student = new Student( null, req.getParameter( "firstname" ), req.getParameter( "lastname" ) );
 			student.setGroup( group );
-			studentDAO.addEntity( student );
+			//group.addStudent( student );
 			
-			System.out.println( "+++++++++++++++++++ >> Student added" );
+			//groupDAO.updateEntity( group );
+			studentDAO.addEntity( student );
 			
 			req
 				.getRequestDispatcher( StudentController.getBasePath( true ) )
 				.forward( req, resp );
 		}
+	}
+	
+	// -------------------------------------------------------------------------------------------------------- Update Student
+	private void updateStudentAction( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
+		System.out.println( Integer.valueOf( req.getParameter( "etu" ) ) );
+		
+		if ( getMethod().equals( "get" ) ) {
+			System.out.println( Integer.valueOf( req.getParameter( "etu" ) ) );
+			
+			HashSet< Group > groups = groupDAO.findAll();
+			req.setAttribute( "groups", groups );
+			
+			Student etu = studentDAO.findByPrimaryKey( Integer.valueOf( req.getParameter( "etu" ) ) );
+			req.setAttribute( "etu", etu );
+			
+			// Path
+			loadJSP( getServletParam( "pathUpdateStudent" ), req, resp );
+			
+		} else {
+			// TODO TRY CATCH
+			Group group = groupDAO.findByPrimaryKey( Integer.valueOf( req.getParameter( "group" ) ) );
+			
+			Student student = studentDAO.findByPrimaryKey( Integer.valueOf( req.getParameter( "etu" ) ) );
+			student.setGroup( group );
+			student.setFirstname( req.getParameter( "firstname" ) );
+			student.setLastname( req.getParameter( "lastname" ) );
+			
+			//group.addStudent( student );
+			//groupDAO.updateEntity( group );
+			
+			studentDAO.updateEntity( student );
+			
+			req
+				.getRequestDispatcher( StudentController.getBasePath( true ) )
+				.forward( req, resp );
+		}
+	}
+	
+	// -------------------------------------------------------------------------------------------------------- Delete Student
+	private void deleteStudentAction( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
+		Student student = studentDAO.findByPrimaryKey( Integer.valueOf( req.getParameter( "etu" ) ) );
+		studentDAO.removeEntity( student );
+		
+		req
+			.getRequestDispatcher( StudentController.getBasePath( true ) )
+			.forward( req, resp );
 	}
 	
 	// -------------------------------------------------------------------------------------------------------- Liste Student
@@ -94,7 +143,7 @@ public final class StudentController extends BaseController {
 	// -------------------------------------------------------------------------------------------------------- Details Student
 	private void detailsStudentAction( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
 		// Set Etu past in params
-		Student etu = studentDAO.findByPrimaryKey( Integer.valueOf( req.getParameter( "etu" ) ) ); //GestionFactory.getEtudiantById( Integer.valueOf( req.getParameter( "etu" ) ) );
+		Student etu = studentDAO.findByPrimaryKey( Integer.valueOf( req.getParameter( "etu" ) ) );
 		req.setAttribute( "etu", etu );
 		
 		// NbAvsence
