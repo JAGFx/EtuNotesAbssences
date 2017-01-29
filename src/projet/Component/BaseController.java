@@ -1,6 +1,5 @@
 package projet.Component;
 
-import javax.persistence.EntityManager;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -87,10 +86,13 @@ public class BaseController extends HttpServlet {
 		rd.forward( request, response );
 	}
 	
+	protected void redirectToPath( String path, HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
+		loadJSP( path, req, resp );
+	}
+	
 	protected String getServletParam( String name ) {
 		return getServletConfig().getInitParameter( name );
 	}
-	
 	
 	protected String getAction() {
 		return ( action == null ) ? "" : action;
