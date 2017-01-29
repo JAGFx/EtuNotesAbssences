@@ -14,43 +14,51 @@ public abstract class BaseDAO< T > {
 	private EntityManager em;
 	private Class< T > entityBeanType;
 	
-	public BaseDAO() {
-		em = GestionFactory.factory.createEntityManager();
-	}
-	
 	public void addEntity( T entity ) {
+		generateEntityManager();
+		
 		try {
 			em.getTransaction().begin();
 			em.persist( entity );
 			em.getTransaction().commit();
 			//em.close();
 		} catch ( Exception e ) {
-			//throw new DAOException( e );
-			System.out.println( e.getMessage() );
+			em.getTransaction().rollback();
+			e.printStackTrace();
+		} finally {
+			em.close();
 		}
 	}
 	
 	public void updateEntity( T entity ) {
+		generateEntityManager();
+		
 		try {
 			em.getTransaction().begin();
 			em.merge( entity );
 			em.getTransaction().commit();
 			//em.close();
 		} catch ( Exception e ) {
-			//throw new DAOException( e );
-			System.out.println( e.getMessage() );
+			em.getTransaction().rollback();
+			e.printStackTrace();
+		} finally {
+			em.close();
 		}
 	}
 	
 	public void removeEntity( T entity ) {
+		generateEntityManager();
+		
 		try {
 			em.getTransaction().begin();
 			em.remove( entity );
 			em.getTransaction().commit();
 			//em.close();
 		} catch ( Exception e ) {
-			//throw new DAOException( e );
-			System.out.println( e.getMessage() );
+			em.getTransaction().rollback();
+			e.printStackTrace();
+		} finally {
+			em.close();
 		}
 	}
 	
@@ -75,6 +83,8 @@ public abstract class BaseDAO< T > {
 	public abstract Collection findAll();
 	
 	protected final Query execQuery( String query, LinkedHashMap< String, Object > params ) {
+		generateEntityManager();
+		
 		Query q = em.createQuery( query );
 		
 		if ( !params.isEmpty() ) {
@@ -89,10 +99,16 @@ public abstract class BaseDAO< T > {
 			}
 		}
 		
+		//em.close();
+		
 		return q;
 	}
 	
 	protected final Class< T > getEntityBeanType() {
 		return entityBeanType;
+	}
+	
+	private void generateEntityManager(){
+		em = GestionFactory.factory.createEntityManager();
 	}
 }

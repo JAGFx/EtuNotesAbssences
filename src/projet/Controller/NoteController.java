@@ -97,7 +97,7 @@ public final class NoteController extends BaseController {
 			//studentDAO.updateEntity( student );
 			
 			req
-				.getRequestDispatcher( NoteController.getBasePath( true ) )
+				.getRequestDispatcher( StudentController.getBasePath( true ) )
 				.forward( req, resp );
 		}
 	}
