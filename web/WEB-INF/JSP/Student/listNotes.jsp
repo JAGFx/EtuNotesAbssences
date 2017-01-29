@@ -27,11 +27,11 @@
 		<ul >
 			<% for ( Note note : etu.getNotes() ) { %>
 			<li ><%= note %>
+				<a href="<%= NoteController.getBasePath( true ) %>/edit?note=<%= note.getId_note() %>" class="btn btn-primary btn-xs" >Modifier</a >
+				<a href="<%= NoteController.getBasePath( true ) %>/delete?note=<%= note.getId_note() %>" class="btn btn-danger btn-xs" >Supprimer</a >
 			</li >
 			<% } %>
 			
-			<a href="" >Modifier</a >
-			<a href="" >Supprimier</a >
 		</ul >
 		
 		<jsp:include page="../Default/foot.jsp" />

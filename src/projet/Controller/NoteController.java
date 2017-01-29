@@ -48,16 +48,14 @@ public final class NoteController extends BaseController {
 		else if ( actionMatch( "/new" ) )
 			newNoteAction( req, resp );
 		
-		else if ( methodIsGET() && actionMatch( "/edit" ) )
+		else if ( actionMatch( "/edit" ) )
 			editNoteAction( req, resp );
 		
 		else if ( methodIsGET() && actionMatch( "/delete" ) )
 			deleteNoteAction( req, resp );
 		
 		else
-			req
-				.getRequestDispatcher( StudentController.getBasePath( true ) )
-				.forward( req, resp );
+			redirectToPath( StudentController.getBasePath( true ), req, resp );
 	}
 	
 	
@@ -70,7 +68,6 @@ public final class NoteController extends BaseController {
 	}
 	
 	// -------------------------------------------------------------------------------------------------------- New Note
-	// FIXME: Bug not fetch after add, but present in DB
 	private void newNoteAction( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
 		Student student = studentDAO.findByPrimaryKey( Integer.valueOf( req.getParameter( "etu" ) ) );
 		
@@ -87,18 +84,9 @@ public final class NoteController extends BaseController {
 			note.setValue( Float.valueOf( req.getParameter( "value" ) ) );
 			note.setStudent( student );
 			
-			System.out.println( note );
-			System.out.println( student + "  --- " + student.getId() );
-			
 			noteDAO.addEntity( note );
-			//student.addNote( note );
-			//System.out.println( student.getNotes().size() );
 			
-			//studentDAO.updateEntity( student );
-			
-			req
-				.getRequestDispatcher( StudentController.getBasePath( true ) )
-				.forward( req, resp );
+			redirectToPath( StudentController.getBasePath( true ), req, resp );
 		}
 	}
 	
@@ -106,15 +94,22 @@ public final class NoteController extends BaseController {
 	private void editNoteAction( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
 		Note note = noteDAO.findByPrimaryKey( Integer.valueOf( req.getParameter( "note" ) ) );
 		
-		note.setCoef( Integer.valueOf( req.getParameter( "note" ) ) );
-		note.setGraddingScale( Integer.valueOf( req.getParameter( "gradingScale" ) ) );
-		note.setValue( Float.valueOf( req.getParameter( "value" ) ) );
-		
-		noteDAO.updateEntity( note );
-		
-		req
-			.getRequestDispatcher( NoteController.getBasePath( true ) )
-			.forward( req, resp );
+		if ( methodIsGET() ) {
+			Collection< Student > students = studentDAO.findAll();
+			req.setAttribute( "students", students );
+			req.setAttribute( "note", note );
+			
+			loadJSP( getServletParam( "pathEdit" ), req, resp );
+			
+		} else {
+			note.setCoef( Integer.valueOf( req.getParameter( "coef" ) ) );
+			note.setGraddingScale( Integer.valueOf( req.getParameter( "gradingScale" ) ) );
+			note.setValue( Float.valueOf( req.getParameter( "value" ) ) );
+			
+			noteDAO.updateEntity( note );
+			
+			redirectToPath( NoteController.getBasePath( true ), req, resp );
+		}
 	}
 	
 	// -------------------------------------------------------------------------------------------------------- Delete Note
@@ -122,8 +117,6 @@ public final class NoteController extends BaseController {
 		Note note = noteDAO.findByPrimaryKey( Integer.valueOf( req.getParameter( "note" ) ) );
 		noteDAO.removeEntity( note );
 		
-		req
-			.getRequestDispatcher( NoteController.getBasePath( true ) )
-			.forward( req, resp );
+		redirectToPath( NoteController.getBasePath( true ), req, resp );
 	}
 }
