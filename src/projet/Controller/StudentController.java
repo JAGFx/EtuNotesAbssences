@@ -79,9 +79,7 @@ public final class StudentController extends BaseController {
 			//groupDAO.updateEntity( group );
 			studentDAO.addEntity( student );
 			
-			req
-				.getRequestDispatcher( StudentController.getBasePath( true ) )
-				.forward( req, resp );
+			redirectToPath( StudentController.getBasePath( true ), req, resp );
 		}
 	}
 	
@@ -115,9 +113,7 @@ public final class StudentController extends BaseController {
 			
 			studentDAO.updateEntity( student );
 			
-			req
-				.getRequestDispatcher( StudentController.getBasePath( true ) )
-				.forward( req, resp );
+			redirectToPath( StudentController.getBasePath( true ), req, resp );
 		}
 	}
 	
@@ -126,9 +122,7 @@ public final class StudentController extends BaseController {
 		Student student = studentDAO.findByPrimaryKey( Integer.valueOf( req.getParameter( "etu" ) ) );
 		studentDAO.removeEntity( student );
 		
-		req
-			.getRequestDispatcher( StudentController.getBasePath( true ) )
-			.forward( req, resp );
+		redirectToPath( StudentController.getBasePath( true ), req, resp );
 	}
 	
 	// -------------------------------------------------------------------------------------------------------- Liste Student
