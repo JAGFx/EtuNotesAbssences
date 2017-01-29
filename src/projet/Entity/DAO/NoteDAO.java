@@ -12,7 +12,7 @@ import java.util.Collection;
 public final class NoteDAO extends BaseDAO< Note > {
 	@Override
 	public Note findByPrimaryKey( Object pk ) {
-		QueryBuilder qb = new QueryBuilder( "SELECT n FROM Note n WHERE id_note = :idnote" );
+		QueryBuilder qb = new QueryBuilder( "SELECT n FROM Note n WHERE n.id_note = :idnote" );
 		qb.addParam( "idnote", pk );
 		
 		return findOne( qb.getQuery(), qb.getParams() );

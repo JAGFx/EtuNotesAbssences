@@ -51,7 +51,7 @@ public abstract class BaseDAO< T > {
 		
 		try {
 			em.getTransaction().begin();
-			em.remove( entity );
+			em.remove( em.merge( entity ) );
 			em.getTransaction().commit();
 			//em.close();
 		} catch ( Exception e ) {
@@ -67,7 +67,7 @@ public abstract class BaseDAO< T > {
 		
 		return ( T ) q.getSingleResult();
 	}
-	// -------------------------------------------------------------------------------------------------------- Liste notes Student
+	
 	public abstract T findByPrimaryKey( Object pk );
 	
 	public T findOne( String param ) {
