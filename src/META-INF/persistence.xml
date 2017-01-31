@@ -32,6 +32,7 @@
 
 			<!-- Disable EclipseLink cache - certains enregistrement n'était pas mis à jour en BD -->
 			<property name="eclipselink.cache.shared.default" value="false" />
+			<property name="eclipselink.allow-zero-id" value="true" />
 		</properties>
 	</persistence-unit>
 </persistence>

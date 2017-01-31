@@ -1,6 +1,7 @@
 package projet.Component;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import java.util.*;
 import java.util.Map.Entry;
@@ -16,15 +17,15 @@ public abstract class BaseDAO< T > {
 	
 	public void addEntity( T entity ) {
 		generateEntityManager();
+		EntityTransaction tx = em.getTransaction();
 		
 		try {
-			em.getTransaction().begin();
+			tx.begin();
 			em.persist( entity );
-			em.getTransaction().commit();
-			//em.close();
+			tx.commit();
 		} catch ( Exception e ) {
-			em.getTransaction().rollback();
 			e.printStackTrace();
+			tx.rollback();
 		} finally {
 			em.close();
 		}
@@ -32,15 +33,15 @@ public abstract class BaseDAO< T > {
 	
 	public void updateEntity( T entity ) {
 		generateEntityManager();
+		EntityTransaction tx = em.getTransaction();
 		
 		try {
-			em.getTransaction().begin();
+			tx.begin();
 			em.merge( entity );
-			em.getTransaction().commit();
-			//em.close();
+			tx.commit();
 		} catch ( Exception e ) {
-			em.getTransaction().rollback();
 			e.printStackTrace();
+			tx.rollback();
 		} finally {
 			em.close();
 		}
@@ -48,15 +49,15 @@ public abstract class BaseDAO< T > {
 	
 	public void removeEntity( T entity ) {
 		generateEntityManager();
+		EntityTransaction tx = em.getTransaction();
 		
 		try {
-			em.getTransaction().begin();
+			tx.begin();
 			em.remove( em.merge( entity ) );
-			em.getTransaction().commit();
-			//em.close();
+			tx.commit();
 		} catch ( Exception e ) {
-			em.getTransaction().rollback();
 			e.printStackTrace();
+			tx.rollback();
 		} finally {
 			em.close();
 		}

@@ -10,7 +10,7 @@ public class Student implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue( strategy = GenerationType.IDENTITY )
+	@GeneratedValue( strategy = GenerationType.AUTO )
 	private final Integer stud_id;
 	
 	@Column( nullable = false )
