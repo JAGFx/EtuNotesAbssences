@@ -13,7 +13,7 @@ import java.util.LinkedHashMap;
 public final class StudentDAO extends BaseDAO< Student > {
 	
 	public Student findByPrimaryKey( Object pk ) {
-		QueryBuilder qb = new QueryBuilder( "SELECT s FROM Student s WHERE s.stud_id = :id" );
+		QueryBuilder qb = new QueryBuilder( "SELECT s FROM Student s WHERE s.stud_id = :id ORDER BY s.lastname" );
 		qb.addParam( "id", pk );
 		
 		return findOne( qb.getQuery(), qb.getParams() );
@@ -21,7 +21,7 @@ public final class StudentDAO extends BaseDAO< Student > {
 	
 	@Override
 	public Collection findAll() {
-		QueryBuilder qb = new QueryBuilder( "SELECT s FROM Student s" );
+		QueryBuilder qb = new QueryBuilder( "SELECT s FROM Student s ORDER BY s.lastname" );
 		
 		return findAll( qb.getQuery(), qb.getParams() );
 	}

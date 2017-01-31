@@ -12,7 +12,7 @@ import java.util.HashSet;
 public final class GroupDAO extends BaseDAO< Group > {
 	@Override
 	public Group findByPrimaryKey( Object pk ) {
-		QueryBuilder qb = new QueryBuilder( "SELECT g FROM GroupStudents g WHERE g.id_Groupe = :id" );
+		QueryBuilder qb = new QueryBuilder( "SELECT g FROM GroupStudents g WHERE g.id_Groupe = :id ORDER BY g.name" );
 		qb.addParam( "id", pk );
 		
 		return findOne( qb.getQuery(), qb.getParams() );
@@ -20,7 +20,7 @@ public final class GroupDAO extends BaseDAO< Group > {
 	
 	@Override
 	public HashSet< Group > findAll() {
-		QueryBuilder qb = new QueryBuilder( "SELECT g FROM GroupStudents g" );
+		QueryBuilder qb = new QueryBuilder( "SELECT g FROM GroupStudents g ORDER BY g.name" );
 		
 		HashSet< Group > hashSet = new HashSet<>();
 		for ( Object grp : findAll( qb.getQuery(), qb.getParams() ) )

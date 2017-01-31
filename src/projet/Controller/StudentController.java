@@ -86,6 +86,7 @@ public final class StudentController extends BaseController {
 	// -------------------------------------------------------------------------------------------------------- Update Student
 	private void updateStudentAction( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
 		System.out.println( Integer.valueOf( req.getParameter( "etu" ) ) );
+		Student student = studentDAO.findByPrimaryKey( Integer.valueOf( req.getParameter( "etu" ) ) );
 		
 		if ( methodIsGET() ) {
 			System.out.println( Integer.valueOf( req.getParameter( "etu" ) ) );
@@ -93,8 +94,8 @@ public final class StudentController extends BaseController {
 			HashSet< Group > groups = groupDAO.findAll();
 			req.setAttribute( "groups", groups );
 			
-			Student etu = studentDAO.findByPrimaryKey( Integer.valueOf( req.getParameter( "etu" ) ) );
-			req.setAttribute( "etu", etu );
+			
+			req.setAttribute( "etu", student );
 			
 			// Path
 			loadJSP( getServletParam( "pathUpdateStudent" ), req, resp );
@@ -103,7 +104,6 @@ public final class StudentController extends BaseController {
 			// TODO TRY CATCH
 			Group group = groupDAO.findByPrimaryKey( Integer.valueOf( req.getParameter( "group" ) ) );
 			
-			Student student = studentDAO.findByPrimaryKey( Integer.valueOf( req.getParameter( "etu" ) ) );
 			student.setGroup( group );
 			student.setFirstname( req.getParameter( "firstname" ) );
 			student.setLastname( req.getParameter( "lastname" ) );
@@ -125,7 +125,7 @@ public final class StudentController extends BaseController {
 		redirectToPath( StudentController.getBasePath( true ), req, resp );
 	}
 	
-	// -------------------------------------------------------------------------------------------------------- Liste Student
+	// -------------------------------------------------------------------------------------------------------- List Student
 	private void listStudentAction( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
 		Collection< Student > etusList = studentDAO.findAll();
 		req.setAttribute( "etusList", etusList );
