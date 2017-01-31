@@ -5,12 +5,12 @@
   Time: 13:01
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="fr" >
 	<head >
 		<title >Title</title >
-		<jsp:include page="../Default/headpage.jsp" />
+		<jsp:include page="../Default/head.jsp" />
 	</head >
 	<body class="container" >
 		<%@ page import="projet.Entity.Group" %>
@@ -18,7 +18,7 @@
 		<jsp:useBean id="etu" type="projet.Entity.Student" scope="request" />
 		
 		<jsp:include page="../Default/header.jsp" />
-		<form method="post" >
+		<form method="post" class="col-xs-12" >
 			
 			<div class="form-group" >
 				<label for="lastname" >Nom</label >

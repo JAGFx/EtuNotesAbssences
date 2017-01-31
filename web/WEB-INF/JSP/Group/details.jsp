@@ -6,37 +6,39 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page import="projet.Entity.Student" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="fr">
 	<head >
 		<title >Title</title >
-		<jsp:include page="../Default/headpage.jsp" />
+		<jsp:include page="../Default/head.jsp" />
 	</head >
-	<body >
+	<body class="container" >
 		<jsp:include page="../Default/header.jsp" />
 		<jsp:useBean id="group" class="projet.Entity.Group" scope="request" />
 		
-		<%-- TODO --%>
-		<a href="" >Modifier</a >
-		<a href="" >Supprimer</a >
-		
-		<ul >
-			<li >ID: <%= group.getId() %>
-			</li >
-			<li >Name: <%= group.getName() %>
-			</li >
-		</ul >
-		
-		<h4 >Etudiants: </h4 >
-		<ul >
-			<% for ( Student etu : group.getStudents() ) { %>
-			<li ><%= etu.getLastname() + ' ' + etu.getFirstname() %>
-			</li >
-			<% } %>
-		</ul >
-		
-		<a href="list.jsp" >Retour</a >
+		<section class="col-xs-12" >
+			<%-- TODO --%>
+			<a href="" >Modifier</a >
+			<a href="" >Supprimer</a >
+			
+			<ul >
+				<li >ID: <%= group.getId() %>
+				</li >
+				<li >Name: <%= group.getName() %>
+				</li >
+			</ul >
+			
+			<h4 >Etudiants: </h4 >
+			<ul >
+				<% for ( Student etu : group.getStudents() ) { %>
+				<li ><%= etu.getLastname() + ' ' + etu.getFirstname() %>
+				</li >
+				<% } %>
+			</ul >
+			
+			<a href="list.jsp" >Retour</a >
+		</section >
 		
 		<jsp:include page="../Default/foot.jsp" />
 	</body >
