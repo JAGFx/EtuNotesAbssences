@@ -35,19 +35,72 @@ public final class GroupController extends BaseController {
 		
 		if ( methodIsGET() && actionMatch( "/details" ) )
 			detailsGroupAction( req, resp );
+		
+		else if ( actionMatch( "/new" ) )
+			newGroupAction( req, resp );
+		
+		else if ( actionMatch( "/edit" ) )
+			updateGroupAction( req, resp );
+		
+		else if ( methodIsGET() && actionMatch( "/delete" ) )
+			deleteGroupAction( req, resp );
+		
 		else
 			listGroupAction( req, resp );
 	}
 	
-	// -------------------------------------------------------------------------------------------------------- Liste groupe
+	// -------------------------------------------------------------------------------------------------------- New Group
+	private void newGroupAction( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
+		if ( methodIsGET() ) {
+			
+			// Path
+			loadJSP( getServletParam( "pathNew" ), req, resp );
+			
+		} else {
+			// TODO TRY CATCH
+			Group group = new Group( null, req.getParameter( "name" ) );
+			groupDAO.addEntity( group );
+			
+			redirectToPath( GroupController.getBasePath( true ), req, resp );
+		}
+	}
+	
+	// -------------------------------------------------------------------------------------------------------- Update Group
+	private void updateGroupAction( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
+		Group group = groupDAO.findByPrimaryKey( Integer.valueOf( req.getParameter( "grp" ) ) );
+		
+		if ( methodIsGET() ) {
+			req.setAttribute( "grp", group );
+			
+			// Path
+			loadJSP( getServletParam( "pathUpdate" ), req, resp );
+			
+		} else {
+			// TODO TRY CATCH
+			group.setName( req.getParameter( "name" ) );
+			groupDAO.updateEntity( group );
+			
+			redirectToPath( GroupController.getBasePath( true ), req, resp );
+		}
+	}
+	
+	// -------------------------------------------------------------------------------------------------------- Delete Group
+	private void deleteGroupAction( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
+		Group group = groupDAO.findByPrimaryKey( Integer.valueOf( req.getParameter( "grp" ) ) );
+		groupDAO.removeEntity( group );
+		
+		redirectToPath( GroupController.getBasePath( true ), req, resp );
+	}
+	
+	// -------------------------------------------------------------------------------------------------------- List Group
 	private void listGroupAction( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
-		Collection< Group > listGroup =  groupDAO.findAll();
+		Collection< Group > listGroup = groupDAO.findAll();
 		req.setAttribute( "listGroup", listGroup );
 		
 		loadJSP( getServletParam( "pathList" ), req, resp );
 	}
 	
-	// -------------------------------------------------------------------------------------------------------- Détails groupe
+	// -------------------------------------------------------------------------------------------------------- Details Group
 	private void detailsGroupAction( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
 		Group groupA = groupDAO.findByPrimaryKey( Integer.valueOf( req.getParameter( "grp" ) ) );
 		

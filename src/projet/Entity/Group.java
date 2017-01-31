@@ -21,7 +21,7 @@ public class Group implements Serializable {
 	private final Integer id_Groupe;
 	
 	@Column( nullable = false )
-	private final String name;
+	private String name;
 	
 	@OneToMany( cascade = CascadeType.PERSIST, mappedBy = "group" )
 	private Set< Student > students;
@@ -50,6 +50,10 @@ public class Group implements Serializable {
 	
 	public String getName() {
 		return name;
+	}
+	
+	public void setName( String name ) {
+		this.name = name;
 	}
 	
 	public Set< Student > getStudents() {
