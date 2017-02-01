@@ -78,6 +78,18 @@ public class Student implements Serializable {
 		notes.add( note );
 	}
 	
+	public String getAverage() {
+		float totalNote = 0.0f;
+		int totalGradingScale = 0;
+		
+		for ( Note note : notes ) {
+			totalNote += note.getValue() * note.getCoef();
+			totalGradingScale += note.getGraddingScale() * note.getCoef();
+		}
+		
+		return ( float ) Math.round( ( totalNote / totalGradingScale ) * 20 * 100 ) / 100 + " / 20";
+	}
+	
 	@Override
 	public String toString() {
 		return firstname + " " + lastname + " < " + group + " >";

@@ -19,6 +19,9 @@ public class Note implements Serializable {
 	@Column( nullable = false )
 	private int coef = COEF;
 	
+	@Column( nullable = false )
+	private String name;
+	
 	@Column(nullable = false)
 	private int graddingScale = GRADING_SCALE;
 	
@@ -72,5 +75,13 @@ public class Note implements Serializable {
 	
 	public void setGraddingScale( int graddingScale ) {
 		this.graddingScale = graddingScale;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setName( String name ) {
+		this.name = name;
 	}
 }
