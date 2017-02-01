@@ -8,3 +8,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <script src="/lib/jquery-3.1.1/jquery-3.1.1.min.js" ></script >
 <script src="/lib/bootstrap-3.3.7/js/bootstrap.min.js" ></script >
+<script src="/assets/js/app.js" ></script >

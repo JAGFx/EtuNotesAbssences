@@ -20,6 +20,8 @@ public class ControllerAccess implements Filter {
 		HttpServletRequest request = ( HttpServletRequest ) req;
 		HttpServletResponse response = ( HttpServletResponse ) resp;
 		
+		request.setCharacterEncoding( "UTF-8" );
+		
 		System.out.println( "-------------------- BEGIN ControllerAccess FILTER" );
 		System.out.println( "RequestURI: " + request.getRequestURI() );
 		
