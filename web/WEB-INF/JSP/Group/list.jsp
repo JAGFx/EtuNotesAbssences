@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" >
 	<head >
 		<title >Title</title >
 		<meta charset="utf-8" >
@@ -53,6 +53,7 @@
 					</td >
 					<td >
 						<a href="<%= StudentController.getBasePath( true ) %>/details?etu=<%= student.getId() %>" class="btn btn-xs btn-default" >Détail</a >
+						<button class="btn btn-xs btn-default modal-open new-note" data-etuid="<%=student.getId()%>" >Notes</button >
 						<a href="<%= StudentController.getBasePath( true ) %>/edit?etu=<%= student.getId() %>" class="btn btn-xs btn-primary" >Modifier</a >
 						<a href="<%= StudentController.getBasePath( true ) %>/delete?etu=<%= student.getId() %>" class="btn btn-xs btn-danger" >Supprimer</a >
 					</td >
@@ -62,6 +63,7 @@
 			</table >
 		</section >
 		
+		<jsp:include page="../Default/modals/new.note.modal.jsp" />
 		<jsp:include page="../Default/foot.jsp" />
 	</body >
 </html >
