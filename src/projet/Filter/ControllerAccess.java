@@ -25,7 +25,7 @@ public class ControllerAccess implements Filter {
 		System.out.println( "-------------------- BEGIN ControllerAccess FILTER" );
 		System.out.println( "RequestURI: " + request.getRequestURI() );
 		
-		Pattern regex = Pattern.compile( "\\.(ico|png|jpg|jpeg|css|js)$" );
+		Pattern regex = Pattern.compile( "\\.(ico|png|jpg|jpeg|css|js|eot|svg|ttf|woff|woff2)$" );
 		Matcher matcher = regex.matcher( request.getRequestURI() );
 		
 		if ( matcher.find() ) {

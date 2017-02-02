@@ -3,6 +3,7 @@
  */
 $( function () {
 	var currentStudent = undefined;
+	var initialized = false;
 	
 	$( '.modal-open.new-note' ).click( function ( e ) {
 		currentStudent = $( e.currentTarget ).data( 'etuid' );
@@ -25,5 +26,28 @@ $( function () {
 					.find( 'form' )
 					.data( 'action' ) + currentStudent
 			);
-	} )
+	} );
+	
+	if ( !initialized ) {
+		$( '#showNotes' )
+			.bootstrapToggle( 'on' );
+		
+		initialized = true;
+	}
+	
+	$( '#showNotes' )
+		.change( function () {
+			var obj = $( this );
+			
+			if ( !obj.prop( 'checked' ) ) {
+				$( '.groupNote' ).hide();
+				obj.prop( 'checked', false );
+			}
+			else {
+				$( '.groupNote' ).show();
+				obj.prop( 'checked', true );
+			}
+		} );
+	
+	
 } );

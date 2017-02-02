@@ -18,6 +18,8 @@
 		<%@ page import="projet.Controller.GroupController" %>
 		<%@ page import="projet.Entity.Student" %>
 		<%@ page import="projet.Controller.StudentController" %>
+		<%@ page import="projet.Entity.Note" %>
+		<%@ page import="projet.Controller.NoteController" %>
 		
 		<jsp:include page="../Default/header.jsp" />
 		<jsp:useBean id="listGroup" type="java.util.Collection<projet.Entity.Group>" scope="request" />
@@ -25,12 +27,16 @@
 		<section class="col-xs-12" >
 			<h2 >Liste des groupes</h2 >
 			<a href="<%= GroupController.getBasePath( true ) %>/new" >Ajouter un groupe</a >
+			<label class="checkbox-inline" >
+				Afficher les notes
+				<input type="checkbox" checked data-toggle="toggle" id="showNotes" data-size="mini" >
+			</label >
 			
 			<table class="table-responsive table table-striped" >
 				<tr >
-					<th >ID</th >
-					<th >Nom</th >
-					<th >Prénom</th >
+					<th style="width: 100px;" >ID</th >
+					<th style="width: 30%;" >Nom</th >
+					<th style="width: 30%;" >Prénom</th >
 					<th >Actions</th >
 				</tr >
 				<% for ( Group group : listGroup ) { %>
@@ -53,11 +59,26 @@
 					</td >
 					<td >
 						<a href="<%= StudentController.getBasePath( true ) %>/details?etu=<%= student.getId() %>" class="btn btn-xs btn-default" >Détail</a >
-						<button class="btn btn-xs btn-default modal-open new-note" data-etuid="<%=student.getId()%>" >Notes</button >
+						<button class="btn btn-xs btn-default modal-open new-note" data-etuid="<%=student.getId()%>" >
+							<span class="glyphicon glyphicon-plus" ></span > Notes
+						</button >
 						<a href="<%= StudentController.getBasePath( true ) %>/edit?etu=<%= student.getId() %>" class="btn btn-xs btn-primary" >Modifier</a >
 						<a href="<%= StudentController.getBasePath( true ) %>/delete?etu=<%= student.getId() %>" class="btn btn-xs btn-danger" >Supprimer</a >
 					</td >
 				</tr >
+				<% for ( Note note : student.getNotes() ) { %>
+				<tr class="groupNote" >
+					<td ></td >
+					<td ><%= note %>
+					</td >
+					<td ><%= note.getName() %>
+					</td >
+					<td >
+						<a href="<%= NoteController.getBasePath( true ) %>/edit?note=<%= note.getId_note() %>" class="btn btn-primary btn-xs" >Modifier</a >
+						<a href="<%= NoteController.getBasePath( true ) %>/delete?note=<%= note.getId_note() %>" class="btn btn-danger btn-xs" >Supprimer</a >
+					</td >
+				</tr >
+				<% } %>
 				<% } %>
 				<% } %>
 			</table >
