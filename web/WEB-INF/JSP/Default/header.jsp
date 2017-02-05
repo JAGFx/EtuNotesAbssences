@@ -8,6 +8,7 @@
 
 <%@ page import="projet.Controller.StudentController" %>
 <%@ page import="projet.Controller.GroupController" %>
+<%@ page import="projet.Controller.AbsenceController" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <header class="col-xs-12" >
@@ -39,6 +40,8 @@
 							</li >
 						</ul >
 					</li >
+					
+					<li ><a href="<%= AbsenceController.getBasePath( true ) %>" >Absences</a ></li >
 				</ul >
 			</div ><!-- /.navbar-collapse -->
 		</div ><!-- /.container-fluid -->

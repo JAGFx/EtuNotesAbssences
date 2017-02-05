@@ -9,4 +9,6 @@
 <script src="/lib/jquery-3.1.1/jquery-3.1.1.min.js" ></script >
 <script src="/lib/bootstrap-3.3.7/js/bootstrap.min.js" ></script >
 <script src="/lib/bootstrap-toggle-v2.2.2/js/bootstrap-toggle.min.js" ></script >
+<script src="/lib/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js" ></script >
+<script src="/lib/bootstrap-datetimepicker-master/js/locales/bootstrap-datetimepicker.fr.js" ></script >
 <script src="/assets/js/app.js" ></script >

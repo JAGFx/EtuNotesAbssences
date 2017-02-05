@@ -13,4 +13,5 @@
 <link rel="stylesheet" type="text/css" href="/lib/bootstrap-3.3.7/css/bootstrap.min.css" >
 <link rel="stylesheet" type="text/css" href="/lib/bootstrap-3.3.7/css/bootstrap-theme-cust.min.css" >
 <link rel="stylesheet" type="text/css" href="/lib/bootstrap-toggle-v2.2.2/css/bootstrap-toggle.min.css" >
+<link rel="stylesheet" type="text/css" href="/lib/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" >
 <link rel="stylesheet" type="text/css" href="/assets/css/app.css" >

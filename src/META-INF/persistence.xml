@@ -13,6 +13,7 @@
 		<class>projet.Entity.Student</class>
 		<class>projet.Entity.Note</class>
 		<class>projet.Entity.Group</class>
+		<class>projet.Entity.Absence</class>
 
 		<!-- Propriétés de l'unité de persistence -->
 		<properties>
