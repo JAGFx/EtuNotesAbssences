@@ -28,6 +28,7 @@ public class ControllerAccess implements Filter {
 		Pattern regex = Pattern.compile( "\\.(ico|png|jpg|jpeg|css|js|eot|svg|ttf|woff|woff2)$" );
 		Matcher matcher = regex.matcher( request.getRequestURI() );
 		
+		// Si la requête correspond à une ressource (Image, CSS, JS, Police, ...), poursuite de la requête
 		if ( matcher.find() ) {
 			System.out.println( "Resources access" );
 			System.out.println( "-------------------- END FILTER" );
@@ -38,11 +39,13 @@ public class ControllerAccess implements Filter {
 			Boolean callFromFrontalCtrl = request.getRequestURI().startsWith( BaseController.BASE_PATH_PROJECT );
 			System.out.println( "Access from Frontal Controller: " + callFromFrontalCtrl );
 			
+			// Accès non effectué depuis le contrôleur frontal, accès non authorisé
 			if ( !callFromFrontalCtrl ) {
 				System.out.println( "Forbidden access Servlet" );
 				System.out.println( "-------------------- END FILTER" );
 				response.sendRedirect( BaseController.BASE_PATH_PROJECT );
 				
+				// Sinon poursuite de la requête
 			} else {
 				System.out.println( "-------------------- END FILTER" );
 				chain.doFilter( req, resp );

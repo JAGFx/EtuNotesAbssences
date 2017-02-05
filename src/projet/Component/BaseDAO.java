@@ -15,6 +15,13 @@ public abstract class BaseDAO< T > {
 	private EntityManager em;
 	private Class< T > entityBeanType;
 	
+	// -------------------------------------------------------------------------- CRUD
+	
+	/**
+	 * Ajoute une entité en base de donnée
+	 *
+	 * @param entity Entité à ajouter
+	 */
 	public void addEntity( T entity ) {
 		generateEntityManager();
 		EntityTransaction tx = em.getTransaction();
@@ -31,6 +38,11 @@ public abstract class BaseDAO< T > {
 		}
 	}
 	
+	/**
+	 * Met à jour une entité en base de données
+	 *
+	 * @param entity Entité à mettre à jour
+	 */
 	public void updateEntity( T entity ) {
 		generateEntityManager();
 		EntityTransaction tx = em.getTransaction();
@@ -47,6 +59,11 @@ public abstract class BaseDAO< T > {
 		}
 	}
 	
+	/**
+	 * Supprime une entité de la base de données
+	 *
+	 * @param entity Entité à supprimer
+	 */
 	public void removeEntity( T entity ) {
 		generateEntityManager();
 		EntityTransaction tx = em.getTransaction();
@@ -63,27 +80,71 @@ public abstract class BaseDAO< T > {
 		}
 	}
 	
+	
+	// -------------------------------------------------------------------------- Liste d'entitées
+	
+	/**
+	 * Retourne une entité grâce à sa clé primaire
+	 *
+	 * @param pk Clé primaire
+	 * @return Entitée trouvé
+	 */
+	public abstract T findByPrimaryKey( Object pk );
+	
+	/**
+	 * Retrouve toutes les entités d'une même classe
+	 *
+	 * @return Collection d'entités
+	 */
+	public abstract Collection findAll();
+	
+	/**
+	 * Retrouve une entité avec la combinaison de requête <> paramètres
+	 *
+	 * @param query Requête SQL
+	 * @param params Paramètres
+	 * @return Entitée correspondante
+	 */
 	public T findOne( String query, LinkedHashMap< String, Object > params ) {
-		Query q = execQuery( query, params );
+		Query q = prepareQuery( query, params );
 		
 		return ( T ) q.getSingleResult();
 	}
 	
-	public abstract T findByPrimaryKey( Object pk );
-	
+	/**
+	 * Retrouve une entité avec une liste de paramètres
+	 *
+	 * @param param Paramètres
+	 * @return Entitée correspondante
+	 */
 	public T findOne( String param ) {
 		return em.find( getEntityBeanType(), param );
 	}
 	
+	/**
+	 * Retrouve toutes entités avec la combinaison de requête <> paramètres
+	 *
+	 * @param query Requête SQL
+	 * @param params Paramètres
+	 * @return Liste d'entitées correspondantes
+	 */
 	public Collection findAll( String query, LinkedHashMap< String, Object > params ) {
-		Query q = execQuery( query, params );
+		Query q = prepareQuery( query, params );
 		
 		return q.getResultList();
 	}
 	
-	public abstract Collection findAll();
 	
-	protected final Query execQuery( String query, LinkedHashMap< String, Object > params ) {
+	// -------------------------------------------------------------------------- Méthodes d'actions
+	
+	/**
+	 * Prépare une requête auprès de la base de données
+	 *
+	 * @param query  Requête SQL
+	 * @param params Paramètres
+	 * @return Requête préparée
+	 */
+	protected final Query prepareQuery( String query, LinkedHashMap< String, Object > params ) {
 		generateEntityManager();
 		
 		Query q = em.createQuery( query );
@@ -96,19 +157,23 @@ public abstract class BaseDAO< T > {
 				
 				q
 					.setParameter( e.getKey(), e.getValue() );
-					//.executeUpdate();
 			}
 		}
-		
-		//em.close();
 		
 		return q;
 	}
 	
+	/**
+	 * Retourne le type de la classe instancié
+	 * @return Type de la classe instancié
+	 */
 	protected final Class< T > getEntityBeanType() {
 		return entityBeanType;
 	}
 	
+	/**
+	 * Regénère le gestionnaire d'entitées
+	 */
 	private void generateEntityManager(){
 		em = GestionFactory.factory.createEntityManager();
 	}
