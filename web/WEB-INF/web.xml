@@ -174,6 +174,40 @@
 	</servlet-mapping>
 
 
+	<!-- ==================== ABSENCE ==================== -->
+	<!-- === Contrôleur  === -->
+	<servlet>
+		<servlet-name>AbsenceController</servlet-name>
+		<servlet-class>projet.Controller.AbsenceController</servlet-class>
+
+		<init-param>
+			<param-name>defaultPath</param-name>
+			<param-value>accueil</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>pathNew</param-name>
+			<param-value>/WEB-INF/JSP/Absence/new.jsp</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>pathEdit</param-name>
+			<param-value>/WEB-INF/JSP/Absence/edit.jsp</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>pathList</param-name>
+			<param-value>/WEB-INF/JSP/Absence/list.jsp</param-value>
+		</init-param>
+	</servlet>
+
+	<!-- === Route  === -->
+	<servlet-mapping>
+		<servlet-name>AbsenceController</servlet-name>
+		<url-pattern>/Absence/*</url-pattern>
+	</servlet-mapping>
+
+
 	<!-- ==================== CONTROLLER ACCESS ==================== -->
 	<!-- === Filtre  === -->
 	<filter>

@@ -25,10 +25,14 @@ public class Student implements Serializable {
 	@OneToMany( cascade = CascadeType.ALL, mappedBy = "student" )
 	private Collection< Note > notes;
 	
+	@OneToMany( cascade = CascadeType.ALL, mappedBy = "student" )
+	private Collection< Absence > absences;
+	
 	public Student() {
 		super();
 		stud_id = UNKNOWN_ID_STUDENT;
 		notes = new ArrayList<>();
+		absences = new ArrayList<>();
 	}
 	
 	public Student( Integer stud_id, String firstname, String lastname ) {
@@ -76,6 +80,14 @@ public class Student implements Serializable {
 	
 	public void addNote( Note note ) {
 		notes.add( note );
+	}
+	
+	public Collection< Absence > getAbsences() {
+		return absences;
+	}
+	
+	public void setAbsences( Collection< Absence > absences ) {
+		this.absences = absences;
 	}
 	
 	public String getAverage() {
