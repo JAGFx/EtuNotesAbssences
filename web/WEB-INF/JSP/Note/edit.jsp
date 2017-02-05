@@ -21,17 +21,17 @@
 		<form method="post" >
 			<div class="form-group" >
 				<label for="coef" >Coeficient</label >
-				<input type="number" id="coef" name="coef" class="form-control" value="<%= note.getCoef() %>" >
+				<input type="number" id="coef" name="coef" class="form-control" value="<%= note.getCoef() %>" required min="1" step="1" >
 			</div >
 			
 			<div class="form-group" >
 				<label for="value" >Valeur</label >
-				<input type="text" id="value" name="value" class="form-control" value="<%= note.getValue() %>" >
+				<input type="text" id="value" name="value" class="form-control" value="<%= note.getValue() %>" required min="0" step="0.1" >
 			</div >
 			
 			<div class="form-group" >
 				<label for="gradingScale" >Barème</label >
-				<input type="number" id="gradingScale" name="gradingScale" class="form-control" value="<%= note.getGraddingScale() %>" >
+				<input type="number" id="gradingScale" name="gradingScale" class="form-control" value="<%= note.getGraddingScale() %>" required min="1" step="1" >
 			</div >
 			
 			<%--<div class="form-group" >

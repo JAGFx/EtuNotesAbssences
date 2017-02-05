@@ -22,17 +22,17 @@
 			
 			<div class="form-group" >
 				<label for="lastname" >Nom</label >
-				<input type="text" id="lastname" name="lastname" class="form-control" value="<%=etu.getLastname() %>" >
+				<input type="text" id="lastname" name="lastname" class="form-control" value="<%=etu.getLastname() %>" required minlength="3" maxlength="100" >>
 			</div >
 			
 			<div class="form-group" >
 				<label for="firstname" >Prénom</label >
-				<input type="text" id="firstname" name="firstname" class="form-control" value="<%=etu.getFirstname() %>" >
+				<input type="text" id="firstname" name="firstname" class="form-control" value="<%=etu.getFirstname() %>" required minlength="3" maxlength="100" >>
 			</div >
 			
 			<div class="form-group" >
 				<label for="group" >Groupe</label >
-				<select name="group" id="group" class="form-control" >
+				<select name="group" id="group" class="form-control" required >
 					<% for ( Group group : groups ) { %>
 					<option value="<%= group.getId() %>" <% if( group.equals( etu.getGroup() ) ) { %>selected<% } %>><%= group %>
 					</option >

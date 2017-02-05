@@ -69,15 +69,12 @@ public final class NoteController extends BaseController {
 	
 	// -------------------------------------------------------------------------------------------------------- New Note
 	private void newNoteAction( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
-		Student student = studentDAO.findByPrimaryKey( Integer.valueOf( req.getParameter( "etu" ) ) );
-		
 		if ( methodIsGET() ) {
-			Collection< Student > students = studentDAO.findAll();
-			req.setAttribute( "students", students );
-			
 			loadJSP( getServletParam( "pathNew" ), req, resp );
 			
 		} else {
+			Student student = studentDAO.findByPrimaryKey( Integer.valueOf( req.getParameter( "etu" ) ) );
+			
 			Note note = new Note();
 			note.setCoef( Integer.valueOf( req.getParameter( "coef" ) ) );
 			note.setGraddingScale( Integer.valueOf( req.getParameter( "gradingScale" ) ) );

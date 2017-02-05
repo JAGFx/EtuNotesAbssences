@@ -18,7 +18,7 @@
 		<form method="post" class="col-xs-12" >
 			<div class="form-group" >
 				<label for="name" >Nom</label >
-				<input type="text" id="name" name="name" class="form-control" >
+				<input type="text" id="name" name="name" class="form-control" required minlength="3" maxlength="50" >
 			</div >
 			
 			<button type="submit" class="btn btn-primary" >Valider</button >

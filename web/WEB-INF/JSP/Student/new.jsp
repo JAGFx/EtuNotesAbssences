@@ -14,24 +14,23 @@
 	</head >
 	<body class="container" >
 		<%@ page import="projet.Entity.Group" %>
-		<%@ page import="projet.Controller.GroupController" %>
 		<jsp:useBean id="groups" type="java.util.Collection<projet.Entity.Group>" scope="request" />
 		
 		<jsp:include page="../Default/header.jsp" />
 		<form method="post" class="col-xs-12" >
 			<div class="form-group" >
 				<label for="lastname" >Nom</label >
-				<input type="text" id="lastname" name="lastname" class="form-control" >
+				<input type="text" id="lastname" name="lastname" class="form-control" required minlength="3" maxlength="100" >
 			</div >
 			
 			<div class="form-group" >
 				<label for="firstname" >Prénom</label >
-				<input type="text" id="firstname" name="firstname" class="form-control" >
+				<input type="text" id="firstname" name="firstname" class="form-control" required minlength="3" maxlength="100" >
 			</div >
 			
 			<div class="form-group" >
 				<label for="group" >Groupe</label >
-				<select name="group" id="group" class="form-control" >
+				<select name="group" id="group" class="form-control" required >
 					<% for ( Group group : groups ) { %>
 					<option value="<%= group.getId() %>" ><%= group %>
 					</option >
