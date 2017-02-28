@@ -22,12 +22,12 @@
 			
 			<div class="form-group" >
 				<label for="lastname" >Nom</label >
-				<input type="text" id="lastname" name="lastname" class="form-control" value="<%=etu.getLastname() %>" required minlength="3" maxlength="100" >>
+				<input type="text" id="lastname" name="lastname" class="form-control" value="<%=etu.getLastname() %>" required minlength="3" maxlength="100" >
 			</div >
 			
 			<div class="form-group" >
 				<label for="firstname" >Prénom</label >
-				<input type="text" id="firstname" name="firstname" class="form-control" value="<%=etu.getFirstname() %>" required minlength="3" maxlength="100" >>
+				<input type="text" id="firstname" name="firstname" class="form-control" value="<%=etu.getFirstname() %>" required minlength="3" maxlength="100" >
 			</div >
 			
 			<div class="form-group" >

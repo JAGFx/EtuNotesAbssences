@@ -41,8 +41,8 @@
 					<td ><%= absence.getToDate() %>
 					</td >
 					<td >
-						<a href="<%= AbsenceController.getBasePath( true ) %>/edit?etu=<%= absence.getId_absence() %>" class="btn btn-xs btn-primary" >Modifier</a >
-						<a href="<%= AbsenceController.getBasePath( true ) %>/delete?etu=<%= absence.getId_absence() %>" class="btn btn-xs btn-danger" >Supprimer</a >
+						<a href="<%= AbsenceController.getBasePath( true ) %>/edit?abs=<%= absence.getId_absence() %>" class="btn btn-xs btn-primary" >Modifier</a >
+						<a href="<%= AbsenceController.getBasePath( true ) %>/delete?abs=<%= absence.getId_absence() %>" class="btn btn-xs btn-danger" >Supprimer</a >
 					</td >
 				</tr >
 				<% } %>

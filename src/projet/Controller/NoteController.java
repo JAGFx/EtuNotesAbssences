@@ -76,6 +76,7 @@ public final class NoteController extends BaseController {
 			Student student = studentDAO.findByPrimaryKey( Integer.valueOf( req.getParameter( "etu" ) ) );
 			
 			Note note = new Note();
+			note.setName( req.getParameter( "name" ) );
 			note.setCoef( Integer.valueOf( req.getParameter( "coef" ) ) );
 			note.setGraddingScale( Integer.valueOf( req.getParameter( "gradingScale" ) ) );
 			note.setValue( Float.valueOf( req.getParameter( "value" ) ) );
@@ -99,6 +100,7 @@ public final class NoteController extends BaseController {
 			loadJSP( getServletParam( "pathEdit" ), req, resp );
 			
 		} else {
+			note.setName( req.getParameter( "name" ) );
 			note.setCoef( Integer.valueOf( req.getParameter( "coef" ) ) );
 			note.setGraddingScale( Integer.valueOf( req.getParameter( "gradingScale" ) ) );
 			note.setValue( Float.valueOf( req.getParameter( "value" ) ) );

@@ -20,6 +20,11 @@
 		<jsp:include page="../Default/header.jsp" />
 		<form method="post" >
 			<div class="form-group" >
+				<label for="name" >Nom</label >
+				<input type="text" id="name" name="name" class="form-control" value="<%= note.getName() %>" required >
+			</div >
+			
+			<div class="form-group" >
 				<label for="coef" >Coeficient</label >
 				<input type="number" id="coef" name="coef" class="form-control" value="<%= note.getCoef() %>" required min="1" step="1" >
 			</div >
